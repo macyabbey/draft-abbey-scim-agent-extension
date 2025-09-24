@@ -351,15 +351,488 @@ The following attributes are defined in the core agent schema.
 
 #### Agent JSON Example
 
-<!-- TODO -->
-```json
+Example Agent representation:
 
+```json
+{
+  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Agent"],
+  "id": "5d8d20c3-6a9f-4e45-b8d0-c7aa3f562acd",
+  "externalId": "8ccc535b-716d-4d32-b3e9-57c8be449c82",
+  "meta": {
+    "resourceType": "Agent",
+    "created": "2023-11-08T04:56:22Z",
+    "lastModified": "2023-11-08T04:56:22Z",
+    "location": "https://example.com/v2/Agents/5d8d20c3-6a9f-4e45-b8d0-c7aa3f562acd"
+  },
+  "name": "Customer Support Assistant",
+  "displayName": "CS Assistant",
+  "description": "An agent for handling customer support inquiries",
+  "type": "support",
+  "active": true,
+  "entitlements": [
+    {
+      "value": "urn:example:entitlement:access-knowledge-base",
+      "display": "Knowledge Base Access"
+    },
+    {
+      "value": "urn:example:entitlement:create-support-tickets",
+      "display": "Support Ticket Creation"
+    }
+  ],
+  "roles": [
+    {
+      "value": "urn:example:role:support-agent",
+      "display": "Support Agent"
+    }
+  ],
+  "groups": [
+    {
+      "value": "e9e30dba-f08f-4109-8486-d5c6a331660a",
+      "$ref": "https://example.com/v2/Groups/e9e30dba-f08f-4109-8486-d5c6a331660a",
+      "display": "Customer Support Agents"
+    }
+  ],
+  "applications": [
+    {
+      "value": "2819c223-7f76-453a-919d-413861904646",
+      "$ref": "https://example.com/v2/AgenticApplications/2819c223-7f76-453a-919d-413861904646",
+      "display": "AI Assistant Platform"
+    }
+  ],
+  "subject": "agent:customer-support-assistant",
+  "protocols": [
+    {
+      "type": "A2A",
+      "specificationUrl": "https://example.com/a2a-specs/customer-support-assistant"
+    },
+    {
+      "type": "OpenAPI",
+      "specificationUrl": "https://example.com/openapi/customer-support-assistant"
+    }
+  ],
+  "owners": [
+    {
+      "value": "b7c14771-226c-4d05-8860-134711653041",
+      "$ref": "https://example.com/v2/Users/b7c14771-226c-4d05-8860-134711653041",
+      "display": "John Doe"
+    }
+  ]
+}
 ```
 
 #### Agent Schema Json
 
-<!-- TODO -->
+The Agent schema in JSON format:
+
 ```json
+{
+  "id": "urn:ietf:params:scim:schemas:core:2.0:Agent",
+  "name": "Agent",
+  "description": "Agent Schema for SCIM",
+  "attributes": [
+    {
+      "name": "name",
+      "type": "string",
+      "multiValued": false,
+      "description": "The name of the Agent",
+      "required": true,
+      "caseExact": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "displayName",
+      "type": "string",
+      "multiValued": false,
+      "description": "The display name of the Agent",
+      "required": false,
+      "caseExact": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "multiValued": false,
+      "description": "A description of the Agent",
+      "required": false,
+      "caseExact": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "multiValued": false,
+      "description": "The type of agent",
+      "required": false,
+      "caseExact": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "A Boolean value indicating the agent's administrative status",
+      "required": false,
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "entitlements",
+      "type": "complex",
+      "multiValued": true,
+      "description": "Entitlements the agent has",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The value of an entitlement",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "display",
+          "type": "string",
+          "multiValued": false,
+          "description": "A human-readable name for the entitlement",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "A label indicating the attribute's function",
+          "required": false,
+          "caseExact": false,
+          "canonicalValues": ["direct", "indirect"],
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "primary",
+          "type": "boolean",
+          "multiValued": false,
+          "description": "A Boolean value indicating the 'primary' or preferred entitlement",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "roles",
+      "type": "complex",
+      "multiValued": true,
+      "description": "Roles the agent assumes",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The value of a role",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "display",
+          "type": "string",
+          "multiValued": false,
+          "description": "A human-readable name for the role",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "A label indicating the attribute's function",
+          "required": false,
+          "caseExact": false,
+          "canonicalValues": ["direct", "indirect"],
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "primary",
+          "type": "boolean",
+          "multiValued": false,
+          "description": "A Boolean value indicating the 'primary' or preferred role",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "groups",
+      "type": "complex",
+      "multiValued": true,
+      "description": "Groups to which the agent belongs",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The identifier of the group",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "$ref",
+          "type": "reference",
+          "referenceTypes": ["Group"],
+          "multiValued": false,
+          "description": "The URI of the group",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "display",
+          "type": "string",
+          "multiValued": false,
+          "description": "A human-readable name for the group",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "A label indicating the attribute's function",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readOnly",
+      "returned": "default"
+    },
+    {
+      "name": "applications",
+      "type": "complex",
+      "multiValued": true,
+      "description": "Applications this agent shares a trust boundary with",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The identifier of the application",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "$ref",
+          "type": "reference",
+          "referenceTypes": ["AgenticApplication"],
+          "multiValued": false,
+          "description": "The URI of the application",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "display",
+          "type": "string",
+          "multiValued": false,
+          "description": "A human-readable name for the application",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "subject",
+      "type": "string",
+      "multiValued": false,
+      "description": "The subject identifier for token federation",
+      "required": false,
+      "caseExact": true,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "server"
+    },
+    {
+      "name": "protocols",
+      "type": "complex",
+      "multiValued": true,
+      "description": "Communication protocols the agent supports",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "The type of the protocol",
+          "required": true,
+          "caseExact": true,
+          "canonicalValues": ["A2A", "OpenAPI", "MCP-Client", "MCP-Server"],
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "specificationUrl",
+          "type": "string",
+          "multiValued": false,
+          "description": "URL to the protocol specification",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "parent",
+      "type": "complex",
+      "multiValued": false,
+      "description": "The parent Agent of this Agent",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The identifier of the parent agent",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "$ref",
+          "type": "reference",
+          "referenceTypes": ["Agent"],
+          "multiValued": false,
+          "description": "The URI of the parent agent",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "display",
+          "type": "string",
+          "multiValued": false,
+          "description": "A human-readable name for the parent agent",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "owners",
+      "type": "complex",
+      "multiValued": true,
+      "description": "User or Group objects that are owners of this Agent",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The identifier of the owner",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "$ref",
+          "type": "reference",
+          "referenceTypes": ["User", "Group"],
+          "multiValued": false,
+          "description": "The URI of the owner",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "display",
+          "type": "string",
+          "multiValued": false,
+          "description": "A human-readable name for the owner",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    }
+  ],
+  "meta": {
+    "resourceType": "Schema",
+    "location": "/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Agent"
+  }
+}
 ```
 
 ### Agent extensions
@@ -369,18 +842,608 @@ The following attributes are defined in the core agent schema.
 
 ## Agentic application
 
+An Agentic application represents a software application that hosts or provides access to one or more agents. 
+It serves as a container and runtime environment for agents, managing their authentication, authorization, and access to resources.
+
 ### Resource Type
+
+The Agentic Application Resource Type schema is:
+
+      {
+         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:ResourceType"],
+         "id": "AgenticApplication",
+         "name": "AgenticApplication",
+         "endpoint": "/AgenticApplications",
+         "description": "Applications that host or provide access to agents",
+         "schema": "urn:ietf:params:scim:schemas:core:2.0:agenticapplication",
+      }
+
 ### Filtering
+
+Clients MAY have a reference to the Agentic Application name, URL, or correlationId but not the ID.
+For this reason, it is RECOMMENDED that service providers implement
+filtering that allows equality matching on the "name", "correlationId", and "applicationUrls.value" attributes.
+
+Example (note that escaping has been removed for readability):
+
+      GET /scim/v2/AgenticApplications?filter=name eq 'AI Assistant Platform'
+      
+      GET /scim/v2/AgenticApplications?filter=correlationId eq 'app-123456'
+
 ### Schema
+
+The core agentic application schema provides the representation of an "AgenticApplication" resource.
+It is identified using the schema URI:
+
+"urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"
+
+The following attributes are defined in the core agentic application schema.
+
+      name
+         The name of the Agentic Application. REQUIRED.
+
+      displayName
+         The display name of the Agentic Application. If displayName is unassigned,
+         the name MAY be used as the display name.
+
+      description
+         The description of the Agentic Application.
+
+      correlationId
+         A string identifier assigned by the SCIM client, enabling correlation
+         and reporting for an agentic application that has multiple identities.
+         The definitive meaning of this attribute is determined by the SCIM client.
+
+      active
+         A Boolean value indicating the application's administrative status.
+         The definitive meaning of this attribute is determined by the service
+         provider. As a typical example, a value of true implies that the
+         application is operational, while a value of false implies that the
+         application has been disabled.
+
+      applicationUrls
+         A complex multi-valued attribute containing URLs associated with the application.
+         The following sub-attributes are defined:
+
+         type
+            The type of URL. Canonical values are: "sso", "api", "homepage", "console".
+            
+         primary
+            A Boolean value indicating whether this is the primary URL of this type.
+            
+         value
+            The URL string value.
+            
+         description
+            A human-readable description of the URL.
+
+      lastAccessed
+         Timestamp of when the application was last accessed by any agent or user.
+         This attribute can be used for stale access detection and least privilege enforcement.
+
+      oAuthConfiguration
+         A complex attribute that describes the OAuth parameters of the application.
+         The following sub-attributes are defined:
+
+         clientIds
+            A multi-valued complex attribute containing OAuth client IDs.
+            
+            clientId
+               The OAuth client identifier as described in section 2.2 of RFC6749.
+               
+            description
+               A human-readable description of the client ID.
+               
+            environments
+               A multi-valued attribute listing the environments this client ID is valid for.
+
+         redirectUris
+            A multi-valued attribute containing authorized redirect URIs.
+
+         audiences
+            A multi-valued attribute containing authorized audiences as defined
+            in the "aud" claim of section 4.1.3 of RFC7519.
+
+         issuer
+            The identity provider issuer URI as defined in the "iss" claim
+            of section 4.1.1 of RFC7519.
+
+      agents
+         A complex multi-valued attribute referencing agents associated with this application.
+         The following sub-attributes are defined:
+         
+         value
+            The ID of an agent associated with this application.
+            
+         $ref
+            A URI reference to an agent associated with this application.
+            
+         display
+            The display name of the agent.
+            
+         type
+            The relationship type between the agent and application.
+            Canonical values are: "owned", "authorized", "guest".
+
+      identifiers
+         A complex multi-valued attribute containing identifiers associated with this application.
+         The following sub-attributes are defined:
+         
+         type
+            The type of identifier. Service providers MAY define canonical values.
+            
+         value
+            The identifier string value.
+            
+         system
+            The system or domain this identifier is valid within.
+            
 ### Example
+
+Example Agentic Application:
+
+```json
+{
+  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"],
+  "id": "2819c223-7f76-453a-919d-413861904646",
+  "externalId": "app-123456",
+  "meta": {
+    "resourceType": "AgenticApplication",
+    "created": "2023-11-08T04:56:22Z",
+    "lastModified": "2023-11-08T04:56:22Z",
+    "location": "https://example.com/v2/AgenticApplications/2819c223-7f76-453a-919d-413861904646"
+  },
+  "name": "AI Assistant Platform",
+  "displayName": "Enterprise AI Assistant",
+  "description": "Platform hosting various AI agents for enterprise use",
+  "correlationId": "app-123456",
+  "active": true,
+  "applicationUrls": [
+    {
+      "type": "sso",
+      "primary": true,
+      "value": "https://login.example.com/aiassistant",
+      "description": "SSO login URL for the AI Assistant Platform"
+    },
+    {
+      "type": "api",
+      "primary": true,
+      "value": "https://api.example.com/aiassistant/v1",
+      "description": "API endpoint for the AI Assistant Platform"
+    },
+    {
+      "type": "homepage",
+      "primary": true,
+      "value": "https://aiassistant.example.com",
+      "description": "Homepage for the AI Assistant Platform"
+    }
+  ],
+  "lastAccessed": "2023-11-10T14:32:10Z",
+  "oAuthConfiguration": {
+    "clientIds": [
+      {
+        "clientId": "client-abc123",
+        "description": "Production OAuth client",
+        "environments": ["production"]
+      },
+      {
+        "clientId": "client-test456",
+        "description": "Test OAuth client",
+        "environments": ["test", "staging"]
+      }
+    ],
+    "redirectUris": [
+      "https://aiassistant.example.com/oauth/callback",
+      "https://test.aiassistant.example.com/oauth/callback"
+    ],
+    "audiences": ["https://api.example.com"],
+    "issuer": "https://identity.example.com"
+  },
+  "agents": [
+    {
+      "value": "5d8d20c3-6a9f-4e45-b8d0-c7aa3f562acd",
+      "$ref": "https://example.com/v2/Agents/5d8d20c3-6a9f-4e45-b8d0-c7aa3f562acd",
+      "display": "Customer Support Assistant",
+      "type": "owned"
+    },
+    {
+      "value": "7e9d42b1-5a8c-4f21-a7b3-d5e8f9c12345",
+      "$ref": "https://example.com/v2/Agents/7e9d42b1-5a8c-4f21-a7b3-d5e8f9c12345",
+      "display": "Data Analysis Assistant",
+      "type": "owned"
+    }
+  ],
+  "identifiers": [
+    {
+      "type": "NHI",
+      "value": "NHI12345",
+      "system": "healthcare-system"
+    },
+    {
+      "type": "internalAppId",
+      "value": "int-app-789",
+      "system": "enterprise-catalog"
+    }
+  ]
+}
+```
 
 # Schema JSON Representations
 
+This section provides the complete JSON representation for the schemas defined in this extension.
+
+## Agent Schema JSON
+
+The complete Agent schema in JSON format is included in the Agent Schema section above.
+
+## Agentic Application Schema JSON
+
+```json
+{
+  "id": "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication",
+  "name": "AgenticApplication",
+  "description": "Agentic Application Schema for SCIM",
+  "attributes": [
+    {
+      "name": "name",
+      "type": "string",
+      "multiValued": false,
+      "description": "The name of the Agentic Application",
+      "required": true,
+      "caseExact": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "displayName",
+      "type": "string",
+      "multiValued": false,
+      "description": "The display name of the Agentic Application",
+      "required": false,
+      "caseExact": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "multiValued": false,
+      "description": "A description of the Agentic Application",
+      "required": false,
+      "caseExact": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "correlationId",
+      "type": "string",
+      "multiValued": false,
+      "description": "An identifier for correlation across systems",
+      "required": false,
+      "caseExact": true,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "A Boolean value indicating the application's administrative status",
+      "required": false,
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "applicationUrls",
+      "type": "complex",
+      "multiValued": true,
+      "description": "URLs associated with the application",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "The type of URL",
+          "required": true,
+          "caseExact": true,
+          "canonicalValues": ["sso", "api", "homepage", "console"],
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "primary",
+          "type": "boolean",
+          "multiValued": false,
+          "description": "A Boolean value indicating if this is the primary URL",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The URL value",
+          "required": true,
+          "caseExact": true,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "multiValued": false,
+          "description": "A description of the URL",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "lastAccessed",
+      "type": "dateTime",
+      "multiValued": false,
+      "description": "When the application was last accessed",
+      "required": false,
+      "mutability": "readWrite",
+      "returned": "default",
+      "uniqueness": "none"
+    },
+    {
+      "name": "oAuthConfiguration",
+      "type": "complex",
+      "multiValued": false,
+      "description": "OAuth configuration for the application",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "clientIds",
+          "type": "complex",
+          "multiValued": true,
+          "description": "OAuth client IDs",
+          "required": false,
+          "subAttributes": [
+            {
+              "name": "clientId",
+              "type": "string",
+              "multiValued": false,
+              "description": "The OAuth client identifier",
+              "required": true,
+              "caseExact": true,
+              "mutability": "readWrite",
+              "returned": "default",
+              "uniqueness": "server"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "multiValued": false,
+              "description": "A description of the client ID",
+              "required": false,
+              "caseExact": false,
+              "mutability": "readWrite",
+              "returned": "default",
+              "uniqueness": "none"
+            },
+            {
+              "name": "environments",
+              "type": "string",
+              "multiValued": true,
+              "description": "Environments for this client ID",
+              "required": false,
+              "caseExact": true,
+              "mutability": "readWrite",
+              "returned": "default",
+              "uniqueness": "none"
+            }
+          ],
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "redirectUris",
+          "type": "string",
+          "multiValued": true,
+          "description": "Authorized redirect URIs",
+          "required": false,
+          "caseExact": true,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "audiences",
+          "type": "string",
+          "multiValued": true,
+          "description": "Authorized audiences",
+          "required": false,
+          "caseExact": true,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "issuer",
+          "type": "string",
+          "multiValued": false,
+          "description": "Identity provider issuer URI",
+          "required": false,
+          "caseExact": true,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "agents",
+      "type": "complex",
+      "multiValued": true,
+      "description": "Agents associated with this application",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The identifier of the agent",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "$ref",
+          "type": "reference",
+          "referenceTypes": ["Agent"],
+          "multiValued": false,
+          "description": "The URI of the agent",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "display",
+          "type": "string",
+          "multiValued": false,
+          "description": "A human-readable name for the agent",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "The relationship type between agent and application",
+          "required": false,
+          "caseExact": true,
+          "canonicalValues": ["owned", "authorized", "guest"],
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    },
+    {
+      "name": "identifiers",
+      "type": "complex",
+      "multiValued": true,
+      "description": "Identifiers associated with this application",
+      "required": false,
+      "subAttributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "multiValued": false,
+          "description": "The type of identifier",
+          "required": true,
+          "caseExact": true,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "multiValued": false,
+          "description": "The identifier value",
+          "required": true,
+          "caseExact": true,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        },
+        {
+          "name": "system",
+          "type": "string",
+          "multiValued": false,
+          "description": "The system or domain for this identifier",
+          "required": false,
+          "caseExact": true,
+          "mutability": "readWrite",
+          "returned": "default",
+          "uniqueness": "none"
+        }
+      ],
+      "mutability": "readWrite",
+      "returned": "default"
+    }
+  ],
+  "meta": {
+    "resourceType": "Schema",
+    "location": "/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"
+  }
+}
+```
 
 
 # Security Considerations
 
-> fill out
+This section outlines the security considerations specific to agent and agentic application management using SCIM.
+
+## Authentication and Authorization
+
+Implementations MUST follow the authentication and authorization requirements defined in {{RFC7644}}. Access to Agent and Agentic Application resources should be restricted based on the privileges of the requesting client.
+
+## Handling of Sensitive Information
+
+The Agents and Agentic Applications resources may contain sensitive information such as:
+- OAuth client credentials in oAuthConfiguration
+- System identifiers in the identifiers attribute
+- URLs that may expose implementation details
+
+Service providers should carefully consider which attributes are returned in different contexts and ensure proper authorization before disclosing sensitive information.
+
+## Agent Subject Correlation
+
+The subject attribute provides correlation between an agent and OpenID Connect identities. Implementation should take care to validate the authenticity of the token before establishing this correlation to prevent unauthorized access.
+
+## Protocol Specifications
+
+The protocolsSpecificationUrl attributes may link to documents containing sensitive details about how to communicate with an agent. Access to these specifications should be properly controlled to prevent unauthorized access to agent communication channels.
+
+## Agentic Applications as OAuth Clients
+
+When Agentic Applications are registered as OAuth clients, the normal security considerations for OAuth 2.0 [RFC6749] apply. In particular, implementations should validate redirect URIs, issue client secrets via secure channels, and implement proper token validation.
+
+## Agent Privileges and Least Privilege
+
+Agents should be provisioned with the minimum necessary entitlements required for their function. Implementers should regularly audit agent entitlements and roles, especially for agents with broad capabilities.
+
+## Cross-domain Trust
+
+When managing agents across different security domains, implementers must carefully consider the trust relationships established between domains. The presence of an agent in a SCIM server does not inherently convey trust - additional mechanisms should be employed to establish and validate cross-domain trust relationships.
+
+## AI-specific Considerations
+
+Due to the agentic nature of these resources, additional safeguards should be implemented:
+
+1. Monitoring and auditing of agent actions to detect anomalous behavior
+2. Mechanisms to suspend agent operation if unexpected behavior is detected
+3. Clear boundaries on the resources and systems an agent can access
+4. Regular review of agent permissions to detect privilege escalation
 
 # IANA Considerations
 
