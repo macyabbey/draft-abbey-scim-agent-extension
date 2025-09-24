@@ -352,73 +352,7 @@ The following attributes are defined in the core agent schema.
 #### Agent JSON Example
 
 Example Agent representation:
-
-```json
-{
-  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Agent"],
-  "id": "5d8d20c3-6a9f-4e45-b8d0-c7aa3f562acd",
-  "externalId": "8ccc535b-716d-4d32-b3e9-57c8be449c82",
-  "meta": {
-    "resourceType": "Agent",
-    "created": "2023-11-08T04:56:22Z",
-    "lastModified": "2023-11-08T04:56:22Z",
-    "location": "https://example.com/v2/Agents/5d8d20c3-6a9f-4e45-b8d0-c7aa3f562acd"
-  },
-  "name": "Customer Support Assistant",
-  "displayName": "CS Assistant",
-  "description": "An agent for handling customer support inquiries",
-  "type": "support",
-  "active": true,
-  "entitlements": [
-    {
-      "value": "urn:example:entitlement:access-knowledge-base",
-      "display": "Knowledge Base Access"
-    },
-    {
-      "value": "urn:example:entitlement:create-support-tickets",
-      "display": "Support Ticket Creation"
-    }
-  ],
-  "roles": [
-    {
-      "value": "urn:example:role:support-agent",
-      "display": "Support Agent"
-    }
-  ],
-  "groups": [
-    {
-      "value": "e9e30dba-f08f-4109-8486-d5c6a331660a",
-      "$ref": "https://example.com/v2/Groups/e9e30dba-f08f-4109-8486-d5c6a331660a",
-      "display": "Customer Support Agents"
-    }
-  ],
-  "applications": [
-    {
-      "value": "2819c223-7f76-453a-919d-413861904646",
-      "$ref": "https://example.com/v2/AgenticApplications/2819c223-7f76-453a-919d-413861904646",
-      "display": "AI Assistant Platform"
-    }
-  ],
-  "subject": "agent:customer-support-assistant",
-  "protocols": [
-    {
-      "type": "A2A",
-      "specificationUrl": "https://example.com/a2a-specs/customer-support-assistant"
-    },
-    {
-      "type": "OpenAPI",
-      "specificationUrl": "https://example.com/openapi/customer-support-assistant"
-    }
-  ],
-  "owners": [
-    {
-      "value": "b7c14771-226c-4d05-8860-134711653041",
-      "$ref": "https://example.com/v2/Users/b7c14771-226c-4d05-8860-134711653041",
-      "display": "John Doe"
-    }
-  ]
-}
-```
+TODO
 
 #### Agent Schema Json
 
@@ -491,11 +425,22 @@ The Agent schema in JSON format:
       "required": false,
       "subAttributes": [
         {
+          "name": "id",
+          "type": "string",
+          "multiValued": false,
+          "description": "A unique identifier for the entitlement as defined by the service provider",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "server"
+        },
+        {
           "name": "value",
           "type": "string",
           "multiValued": false,
           "description": "The value of an entitlement",
-          "required": false,
+          "required": true,
           "caseExact": false,
           "mutability": "readWrite",
           "returned": "default",
@@ -505,7 +450,7 @@ The Agent schema in JSON format:
           "name": "display",
           "type": "string",
           "multiValued": false,
-          "description": "A human-readable name for the entitlement",
+          "description": "A human-readable name for the entitlement, primarily used for display purposes",
           "required": false,
           "caseExact": false,
           "mutability": "readWrite",
@@ -516,10 +461,9 @@ The Agent schema in JSON format:
           "name": "type",
           "type": "string",
           "multiValued": false,
-          "description": "A label indicating the attribute's function",
+          "description": "A label indicating the entitlement's function",
           "required": false,
           "caseExact": false,
-          "canonicalValues": ["direct", "indirect"],
           "mutability": "readWrite",
           "returned": "default",
           "uniqueness": "none"
@@ -532,6 +476,82 @@ The Agent schema in JSON format:
           "required": false,
           "mutability": "readWrite",
           "returned": "default"
+        },
+        {
+          "name": "supported",
+          "type": "boolean",
+          "multiValued": false,
+          "description": "A Boolean value indicating if the entitlement is enabled and usable in the SCIM service provider's system",
+          "required": true,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "limitedAssignmentsPermitted",
+          "type": "boolean",
+          "multiValued": false,
+          "description": "A Boolean value indicating if a limited number of users may be assigned this entitlement",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "totalAssignmentsPermitted",
+          "type": "integer",
+          "multiValued": false,
+          "description": "An integer value indicating how many users may be assigned this entitlement",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "totalAssignmentsUsed",
+          "type": "integer",
+          "multiValued": false,
+          "description": "An integer value indicating how many users are currently assigned this entitlement",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "containedBy",
+          "type": "complex",
+          "multiValued": true,
+          "description": "A list of 'parent' entitlements that contain a superset of permissions including those granted by this entitlement",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "subAttributes": [
+            {
+              "name": "value",
+              "type": "string",
+              "multiValued": false,
+              "description": "The value of a parent entitlement",
+              "required": true,
+              "mutability": "readWrite",
+              "returned": "default"
+            }
+          ]
+        },
+        {
+          "name": "contains",
+          "type": "complex",
+          "multiValued": true,
+          "description": "A list of 'child' entitlements that this entitlement grants the rights of",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "subAttributes": [
+            {
+              "name": "value",
+              "type": "string",
+              "multiValued": false,
+              "description": "The value of a child entitlement",
+              "required": true,
+              "mutability": "readWrite",
+              "returned": "default"
+            }
+          ]
         }
       ],
       "mutability": "readWrite",
@@ -545,11 +565,22 @@ The Agent schema in JSON format:
       "required": false,
       "subAttributes": [
         {
+          "name": "id",
+          "type": "string",
+          "multiValued": false,
+          "description": "A unique identifier for the role as defined by the service provider",
+          "required": false,
+          "caseExact": false,
+          "mutability": "readOnly",
+          "returned": "default",
+          "uniqueness": "server"
+        },
+        {
           "name": "value",
           "type": "string",
           "multiValued": false,
           "description": "The value of a role",
-          "required": false,
+          "required": true,
           "caseExact": false,
           "mutability": "readWrite",
           "returned": "default",
@@ -559,7 +590,7 @@ The Agent schema in JSON format:
           "name": "display",
           "type": "string",
           "multiValued": false,
-          "description": "A human-readable name for the role",
+          "description": "A human-readable name for the role, primarily used for display purposes",
           "required": false,
           "caseExact": false,
           "mutability": "readWrite",
@@ -570,10 +601,9 @@ The Agent schema in JSON format:
           "name": "type",
           "type": "string",
           "multiValued": false,
-          "description": "A label indicating the attribute's function",
+          "description": "A label indicating the role's function",
           "required": false,
           "caseExact": false,
-          "canonicalValues": ["direct", "indirect"],
           "mutability": "readWrite",
           "returned": "default",
           "uniqueness": "none"
@@ -586,6 +616,82 @@ The Agent schema in JSON format:
           "required": false,
           "mutability": "readWrite",
           "returned": "default"
+        },
+        {
+          "name": "supported",
+          "type": "boolean",
+          "multiValued": false,
+          "description": "A Boolean value indicating if the role is supported and usable in the SCIM service provider's system",
+          "required": true,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "limitedAssignmentsPermitted",
+          "type": "boolean",
+          "multiValued": false,
+          "description": "A Boolean value indicating if a limited number of users may be assigned this role",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "totalAssignmentsPermitted",
+          "type": "integer",
+          "multiValued": false,
+          "description": "An integer value indicating how many users may be assigned this role",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "totalAssignmentsUsed",
+          "type": "integer",
+          "multiValued": false,
+          "description": "An integer value indicating how many users are currently assigned this role",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default"
+        },
+        {
+          "name": "containedBy",
+          "type": "complex",
+          "multiValued": true,
+          "description": "A list of 'parent' roles that contain a superset of permissions including those granted by this role",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "subAttributes": [
+            {
+              "name": "value",
+              "type": "string",
+              "multiValued": false,
+              "description": "The value of a parent role",
+              "required": true,
+              "mutability": "readWrite",
+              "returned": "default"
+            }
+          ]
+        },
+        {
+          "name": "contains",
+          "type": "complex",
+          "multiValued": true,
+          "description": "A list of 'child' roles that this role grants the rights of",
+          "required": false,
+          "mutability": "readWrite",
+          "returned": "default",
+          "subAttributes": [
+            {
+              "name": "value",
+              "type": "string",
+              "multiValued": false,
+              "description": "The value of a child role",
+              "required": true,
+              "mutability": "readWrite",
+              "returned": "default"
+            }
+          ]
         }
       ],
       "mutability": "readWrite",
@@ -955,7 +1061,7 @@ The following attributes are defined in the core agentic application schema.
          value
             The ID of an agent associated with this application.
             
-         $ref
+         ref
             A URI reference to an agent associated with this application.
             
          display
@@ -981,92 +1087,6 @@ The following attributes are defined in the core agentic application schema.
 ### Example
 
 Example Agentic Application:
-
-```json
-{
-  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"],
-  "id": "2819c223-7f76-453a-919d-413861904646",
-  "externalId": "app-123456",
-  "meta": {
-    "resourceType": "AgenticApplication",
-    "created": "2023-11-08T04:56:22Z",
-    "lastModified": "2023-11-08T04:56:22Z",
-    "location": "https://example.com/v2/AgenticApplications/2819c223-7f76-453a-919d-413861904646"
-  },
-  "name": "AI Assistant Platform",
-  "displayName": "Enterprise AI Assistant",
-  "description": "Platform hosting various AI agents for enterprise use",
-  "correlationId": "app-123456",
-  "active": true,
-  "applicationUrls": [
-    {
-      "type": "sso",
-      "primary": true,
-      "value": "https://login.example.com/aiassistant",
-      "description": "SSO login URL for the AI Assistant Platform"
-    },
-    {
-      "type": "api",
-      "primary": true,
-      "value": "https://api.example.com/aiassistant/v1",
-      "description": "API endpoint for the AI Assistant Platform"
-    },
-    {
-      "type": "homepage",
-      "primary": true,
-      "value": "https://aiassistant.example.com",
-      "description": "Homepage for the AI Assistant Platform"
-    }
-  ],
-  "lastAccessed": "2023-11-10T14:32:10Z",
-  "oAuthConfiguration": {
-    "clientIds": [
-      {
-        "clientId": "client-abc123",
-        "description": "Production OAuth client",
-        "environments": ["production"]
-      },
-      {
-        "clientId": "client-test456",
-        "description": "Test OAuth client",
-        "environments": ["test", "staging"]
-      }
-    ],
-    "redirectUris": [
-      "https://aiassistant.example.com/oauth/callback",
-      "https://test.aiassistant.example.com/oauth/callback"
-    ],
-    "audiences": ["https://api.example.com"],
-    "issuer": "https://identity.example.com"
-  },
-  "agents": [
-    {
-      "value": "5d8d20c3-6a9f-4e45-b8d0-c7aa3f562acd",
-      "$ref": "https://example.com/v2/Agents/5d8d20c3-6a9f-4e45-b8d0-c7aa3f562acd",
-      "display": "Customer Support Assistant",
-      "type": "owned"
-    },
-    {
-      "value": "7e9d42b1-5a8c-4f21-a7b3-d5e8f9c12345",
-      "$ref": "https://example.com/v2/Agents/7e9d42b1-5a8c-4f21-a7b3-d5e8f9c12345",
-      "display": "Data Analysis Assistant",
-      "type": "owned"
-    }
-  ],
-  "identifiers": [
-    {
-      "type": "NHI",
-      "value": "NHI12345",
-      "system": "healthcare-system"
-    },
-    {
-      "type": "internalAppId",
-      "value": "int-app-789",
-      "system": "enterprise-catalog"
-    }
-  ]
-}
-```
 
 # Schema JSON Representations
 
