@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-23T00:07:53.825587+00:00",
+  "timestamp": "2025-09-25T00:07:49.697344+00:00",
   "repo": "macyabbey/draft-scim-agent-extension",
   "labels": [
     {
@@ -50,5 +50,32 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOPjJNGM6qXonf",
+      "title": "Update draft-scim-agent-extension.md",
+      "url": "https://github.com/macyabbey/draft-scim-agent-extension/pull/1",
+      "state": "OPEN",
+      "author": "rafaels2",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Lots of todos here. Just started generating some of the schema with CoPilot based on context I've built.",
+      "createdAt": "2025-09-24T20:52:01Z",
+      "updatedAt": "2025-09-24T20:53:09Z",
+      "baseRepository": "macyabbey/draft-scim-agent-extension",
+      "baseRefName": "main",
+      "baseRefOid": "44ca92d6751df97e3f3ebb032af757b43dd0f5da",
+      "headRepository": "rafaels2/draft-scim-agent-extension",
+      "headRefName": "rafaels2/add-agentic-application",
+      "headRefOid": "2bf12f1e653036bc9298f91da6b997bbb0c0a10c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
