@@ -351,13 +351,11 @@ The following attributes are defined in the core agent schema.
 
 #### Agent JSON Example
 
-Example Agent representation:
 <!-- TODO -->
 
 #### Agent Schema Json
 
 <!-- TODO -->
-
 
 ### Agent extensions
 
@@ -379,7 +377,7 @@ The Agentic Application Resource Type schema is:
          "name": "AgenticApplication",
          "endpoint": "/AgenticApplications",
          "description": "Applications that host or provide access to agents",
-         "schema": "urn:ietf:params:scim:schemas:core:2.0:agenticapplication",
+         "schema": "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication",
       }
 
 ### Filtering
@@ -413,11 +411,6 @@ The following attributes are defined in the core agentic application schema.
       description
          The description of the Agentic Application.
 
-      correlationId
-         A string identifier assigned by the SCIM client, enabling correlation
-         and reporting for an agentic application that has multiple identities.
-         The definitive meaning of this attribute is determined by the SCIM client.
-
       active
          A Boolean value indicating the application's administrative status.
          The definitive meaning of this attribute is determined by the service
@@ -430,7 +423,7 @@ The following attributes are defined in the core agentic application schema.
          The following sub-attributes are defined:
 
          type
-            The type of URL. Canonical values are: "sso", "api", "homepage", "console".
+            The type of URL. Canonical values are: "ssoEndpoint", "loginPage", "api", "homepage".
             
          primary
             A Boolean value indicating whether this is the primary URL of this type.
@@ -446,31 +439,26 @@ The following attributes are defined in the core agentic application schema.
          This attribute can be used for stale access detection and least privilege enforcement.
 
       oAuthConfiguration
-         A complex attribute that describes the OAuth parameters of the application.
+         A complex multi-valued attribute that describes the OAuth connections of the application.
          The following sub-attributes are defined:
 
-         clientIds
-            A multi-valued complex attribute containing OAuth client IDs.
+         clientId
+            The OAuth client identifier as described in section 2.2 of RFC6749.
             
-            clientId
-               The OAuth client identifier as described in section 2.2 of RFC6749.
-               
-            description
-               A human-readable description of the client ID.
-               
-            environments
-               A multi-valued attribute listing the environments this client ID is valid for.
-
-         redirectUris
-            A multi-valued attribute containing authorized redirect URIs.
-
-         audiences
-            A multi-valued attribute containing authorized audiences as defined
+         description
+            A human-readable description of the client ID.
+            
+         audienceUri
+            The OAuth audience as defined
             in the "aud" claim of section 4.1.3 of RFC7519.
 
-         issuer
+         issuerUri
             The identity provider issuer URI as defined in the "iss" claim
             of section 4.1.1 of RFC7519.
+         
+         redirectUri
+            A multi-valued attribute containing authorized redirect URIs.
+
 
       agents
          A complex multi-valued attribute referencing agents associated with this application.
@@ -489,12 +477,13 @@ The following attributes are defined in the core agentic application schema.
             The relationship type between the agent and application.
             Canonical values are: "owned", "authorized", "guest".
 
-      identifiers
-         A complex multi-valued attribute containing identifiers associated with this application.
+      externalIdentifiers
+         A complex multi-valued attribute containing identifiers associated with this application. OPTIONAL
          The following sub-attributes are defined:
          
          type
             The type of identifier. Service providers MAY define canonical values.
+            <!-- Todo: what kind? I'm thinking about the SSO URLs of that application in the IDP -->
             
          value
             The identifier string value.
