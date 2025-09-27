@@ -425,22 +425,11 @@ The Agent schema in JSON format:
       "required": false,
       "subAttributes": [
         {
-          "name": "id",
-          "type": "string",
-          "multiValued": false,
-          "description": "A unique identifier for the entitlement as defined by the service provider",
-          "required": false,
-          "caseExact": false,
-          "mutability": "readOnly",
-          "returned": "default",
-          "uniqueness": "server"
-        },
-        {
           "name": "value",
           "type": "string",
           "multiValued": false,
           "description": "The value of an entitlement",
-          "required": true,
+          "required": false,
           "caseExact": false,
           "mutability": "readWrite",
           "returned": "default",
@@ -450,7 +439,7 @@ The Agent schema in JSON format:
           "name": "display",
           "type": "string",
           "multiValued": false,
-          "description": "A human-readable name for the entitlement, primarily used for display purposes",
+          "description": "A human-readable name for the entitlement",
           "required": false,
           "caseExact": false,
           "mutability": "readWrite",
@@ -461,9 +450,10 @@ The Agent schema in JSON format:
           "name": "type",
           "type": "string",
           "multiValued": false,
-          "description": "A label indicating the entitlement's function",
+          "description": "A label indicating the attribute's function",
           "required": false,
           "caseExact": false,
+          "canonicalValues": ["direct", "indirect"],
           "mutability": "readWrite",
           "returned": "default",
           "uniqueness": "none"
@@ -476,82 +466,6 @@ The Agent schema in JSON format:
           "required": false,
           "mutability": "readWrite",
           "returned": "default"
-        },
-        {
-          "name": "supported",
-          "type": "boolean",
-          "multiValued": false,
-          "description": "A Boolean value indicating if the entitlement is enabled and usable in the SCIM service provider's system",
-          "required": true,
-          "mutability": "readWrite",
-          "returned": "default"
-        },
-        {
-          "name": "limitedAssignmentsPermitted",
-          "type": "boolean",
-          "multiValued": false,
-          "description": "A Boolean value indicating if a limited number of users may be assigned this entitlement",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default"
-        },
-        {
-          "name": "totalAssignmentsPermitted",
-          "type": "integer",
-          "multiValued": false,
-          "description": "An integer value indicating how many users may be assigned this entitlement",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default"
-        },
-        {
-          "name": "totalAssignmentsUsed",
-          "type": "integer",
-          "multiValued": false,
-          "description": "An integer value indicating how many users are currently assigned this entitlement",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default"
-        },
-        {
-          "name": "containedBy",
-          "type": "complex",
-          "multiValued": true,
-          "description": "A list of 'parent' entitlements that contain a superset of permissions including those granted by this entitlement",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default",
-          "subAttributes": [
-            {
-              "name": "value",
-              "type": "string",
-              "multiValued": false,
-              "description": "The value of a parent entitlement",
-              "required": true,
-              "mutability": "readWrite",
-              "returned": "default"
-            }
-          ]
-        },
-        {
-          "name": "contains",
-          "type": "complex",
-          "multiValued": true,
-          "description": "A list of 'child' entitlements that this entitlement grants the rights of",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default",
-          "subAttributes": [
-            {
-              "name": "value",
-              "type": "string",
-              "multiValued": false,
-              "description": "The value of a child entitlement",
-              "required": true,
-              "mutability": "readWrite",
-              "returned": "default"
-            }
-          ]
         }
       ],
       "mutability": "readWrite",
@@ -565,22 +479,11 @@ The Agent schema in JSON format:
       "required": false,
       "subAttributes": [
         {
-          "name": "id",
-          "type": "string",
-          "multiValued": false,
-          "description": "A unique identifier for the role as defined by the service provider",
-          "required": false,
-          "caseExact": false,
-          "mutability": "readOnly",
-          "returned": "default",
-          "uniqueness": "server"
-        },
-        {
           "name": "value",
           "type": "string",
           "multiValued": false,
           "description": "The value of a role",
-          "required": true,
+          "required": false,
           "caseExact": false,
           "mutability": "readWrite",
           "returned": "default",
@@ -590,7 +493,7 @@ The Agent schema in JSON format:
           "name": "display",
           "type": "string",
           "multiValued": false,
-          "description": "A human-readable name for the role, primarily used for display purposes",
+          "description": "A human-readable name for the role",
           "required": false,
           "caseExact": false,
           "mutability": "readWrite",
@@ -601,9 +504,10 @@ The Agent schema in JSON format:
           "name": "type",
           "type": "string",
           "multiValued": false,
-          "description": "A label indicating the role's function",
+          "description": "A label indicating the attribute's function",
           "required": false,
           "caseExact": false,
+          "canonicalValues": ["direct", "indirect"],
           "mutability": "readWrite",
           "returned": "default",
           "uniqueness": "none"
@@ -616,82 +520,6 @@ The Agent schema in JSON format:
           "required": false,
           "mutability": "readWrite",
           "returned": "default"
-        },
-        {
-          "name": "supported",
-          "type": "boolean",
-          "multiValued": false,
-          "description": "A Boolean value indicating if the role is supported and usable in the SCIM service provider's system",
-          "required": true,
-          "mutability": "readWrite",
-          "returned": "default"
-        },
-        {
-          "name": "limitedAssignmentsPermitted",
-          "type": "boolean",
-          "multiValued": false,
-          "description": "A Boolean value indicating if a limited number of users may be assigned this role",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default"
-        },
-        {
-          "name": "totalAssignmentsPermitted",
-          "type": "integer",
-          "multiValued": false,
-          "description": "An integer value indicating how many users may be assigned this role",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default"
-        },
-        {
-          "name": "totalAssignmentsUsed",
-          "type": "integer",
-          "multiValued": false,
-          "description": "An integer value indicating how many users are currently assigned this role",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default"
-        },
-        {
-          "name": "containedBy",
-          "type": "complex",
-          "multiValued": true,
-          "description": "A list of 'parent' roles that contain a superset of permissions including those granted by this role",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default",
-          "subAttributes": [
-            {
-              "name": "value",
-              "type": "string",
-              "multiValued": false,
-              "description": "The value of a parent role",
-              "required": true,
-              "mutability": "readWrite",
-              "returned": "default"
-            }
-          ]
-        },
-        {
-          "name": "contains",
-          "type": "complex",
-          "multiValued": true,
-          "description": "A list of 'child' roles that this role grants the rights of",
-          "required": false,
-          "mutability": "readWrite",
-          "returned": "default",
-          "subAttributes": [
-            {
-              "name": "value",
-              "type": "string",
-              "multiValued": false,
-              "description": "The value of a child role",
-              "required": true,
-              "mutability": "readWrite",
-              "returned": "default"
-            }
-          ]
         }
       ],
       "mutability": "readWrite",
