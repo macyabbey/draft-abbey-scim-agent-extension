@@ -500,8 +500,7 @@ Example Agentic Application:
 This section provides the complete JSON representation for the schemas defined in this extension.
 
 ## Agent Schema JSON
-
-The complete Agent schema in JSON format is included in the Agent Schema section above.
+<!-- TODO -->
 
 ## Agentic Application Schema JSON
 <!-- TODO -->
