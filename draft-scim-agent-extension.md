@@ -29,7 +29,7 @@ venue:
 author:
   - fullname: "Macy Abbey"
     organization: Okta
-    email: "macy.abbey@okta.com"
+    email: "macy.abbey@gmail.com"
   - fullname: "Rafael S. Cohen"
     organization: Okta
     email: "rafael.cohen@okta.com"
@@ -480,9 +480,157 @@ representation in JSON format.
          }
       }
 
-#### Agent Resource Schema Representation
+## Agentic application
 
-   The following is intended as an example of the SCIM schema
+An Agentic application represents a software application that hosts or provides access to one or more agents.
+It serves as a container and runtime environment for agents, managing their authentication, authorization, and access to resources.
+
+### Resource Type
+
+The Agentic Application Resource Type schema is:
+
+      {
+         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:ResourceType"],
+         "id": "AgenticApplication",
+         "name": "AgenticApplication",
+         "endpoint": "/AgenticApplications",
+         "description": "Applications that host or provide access to agents",
+         "schema": "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication",
+      }
+
+### Filtering
+
+Clients MAY have a reference to the Agentic Application name, URL, or externalId but not the ID.
+For this reason, it is RECOMMENDED that service providers implement
+filtering that allows equality matching on the "name", "externalId", and "applicationUrls.value" attributes.
+
+Example (note that escaping has been removed for readability):
+
+      GET /scim/v2/AgenticApplications?filter=name eq 'AI Assistant Platform'
+
+      GET /scim/v2/AgenticApplications?filter=externalId eq 'app-123456'
+
+### Common attributes
+
+The agentic application resource type contains the common SCIM resource type attributes
+defined in {{RFC7643}} [Section 3.1 Common Attributes](https://datatracker.ietf.org/doc/html/rfc7643#section-3.1)
+
+They are listed here for completeness:
+
+   + id
+   + externalId
+   + meta
+
+### Schema
+
+The core agentic application schema provides the representation of an "AgenticApplication" resource.
+It is identified using the schema URI:
+
+"urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"
+
+The following attributes are defined in the core agentic application schema.
+
+      name
+         The name of the Agentic Application. REQUIRED.
+
+      displayName
+         The display name of the Agentic Application. If displayName is unassigned,
+         the name MAY be used as the display name.
+
+      description
+         The description of the Agentic Application.
+
+      active
+         A Boolean value indicating the application's administrative status.
+         The definitive meaning of this attribute is determined by the service
+         provider. As a typical example, a value of true implies that the
+         application is operational, while a value of false implies that the
+         application has been disabled.
+
+      applicationUrls
+         A complex multi-valued attribute containing URLs associated with the application.
+         The following sub-attributes are defined:
+
+         type
+            The type of URL. Canonical values are: "ssoEndpoint", "loginPage", "api", "homepage".
+
+         primary
+            A Boolean value indicating whether this is the primary URL of this type.
+
+         value
+            The URL string value.
+
+         description
+            A human-readable description of the URL.
+
+      lastAccessed
+         Timestamp of when the application was last accessed by any agent or user.
+         This attribute can be used for stale access detection and least privilege enforcement.
+
+      oAuthConfiguration
+         A complex multi-valued attribute that describes the OAuth connections of the application.
+         The following sub-attributes are defined:
+
+         clientId
+            The OAuth client identifier as described in section 2.2 of RFC6749.
+
+         description
+            A human-readable description of the client ID.
+
+         audienceUri
+            The OAuth audience as defined
+            in the "aud" claim of section 4.1.3 of RFC7519.
+
+         issuerUri
+            The identity provider issuer URI as defined in the "iss" claim
+            of section 4.1.1 of RFC7519.
+
+         redirectUri
+            A multi-valued attribute containing authorized redirect URIs.
+
+
+      agents
+         A complex multi-valued attribute referencing agents associated with this application.
+         The following sub-attributes are defined:
+
+         value
+            The ID of an agent associated with this application.
+
+         ref
+            A URI reference to an agent associated with this application.
+
+         display
+            The display name of the agent.
+
+         type
+            The relationship type between the agent and application.
+            Canonical values are: "owned", "authorized", "guest".
+
+      externalIdentifiers
+         A complex multi-valued attribute containing identifiers associated with this application. OPTIONAL
+         The following sub-attributes are defined:
+
+         type
+            The type of identifier. Service providers MAY define canonical values.
+            <!-- Todo: what kind? I'm thinking about the SSO URLs of that application in the IDP -->
+
+         value
+            The identifier string value.
+
+         system
+            The system or domain this identifier is valid within.
+
+### Example
+
+Example Agentic Application:
+
+# Schema JSON Representations
+
+This section provides the complete JSON representation for the schemas defined in this extension.
+
+## Agent Schema JSON
+
+The following is intended as an example of the SCIM schema
    representation in JSON format for SCIM resources.  Where permitted, individual values and schema MAY change.  This example includes schema representations for "Agent".
 
       {
@@ -965,156 +1113,6 @@ representation in JSON format.
             "/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Agent"
         }
       }
-
-## Agentic application
-
-An Agentic application represents a software application that hosts or provides access to one or more agents.
-It serves as a container and runtime environment for agents, managing their authentication, authorization, and access to resources.
-
-### Resource Type
-
-The Agentic Application Resource Type schema is:
-
-      {
-         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:ResourceType"],
-         "id": "AgenticApplication",
-         "name": "AgenticApplication",
-         "endpoint": "/AgenticApplications",
-         "description": "Applications that host or provide access to agents",
-         "schema": "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication",
-      }
-
-### Filtering
-
-Clients MAY have a reference to the Agentic Application name, URL, or externalId but not the ID.
-For this reason, it is RECOMMENDED that service providers implement
-filtering that allows equality matching on the "name", "externalId", and "applicationUrls.value" attributes.
-
-Example (note that escaping has been removed for readability):
-
-      GET /scim/v2/AgenticApplications?filter=name eq 'AI Assistant Platform'
-
-      GET /scim/v2/AgenticApplications?filter=externalId eq 'app-123456'
-
-### Common attributes
-
-The agentic application resource type contains the common SCIM resource type attributes
-defined in {{RFC7643}} [Section 3.1 Common Attributes](https://datatracker.ietf.org/doc/html/rfc7643#section-3.1)
-
-They are listed here for completeness:
-
-   + id
-   + externalId
-   + meta
-
-### Schema
-
-The core agentic application schema provides the representation of an "AgenticApplication" resource.
-It is identified using the schema URI:
-
-"urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"
-
-The following attributes are defined in the core agentic application schema.
-
-      name
-         The name of the Agentic Application. REQUIRED.
-
-      displayName
-         The display name of the Agentic Application. If displayName is unassigned,
-         the name MAY be used as the display name.
-
-      description
-         The description of the Agentic Application.
-
-      active
-         A Boolean value indicating the application's administrative status.
-         The definitive meaning of this attribute is determined by the service
-         provider. As a typical example, a value of true implies that the
-         application is operational, while a value of false implies that the
-         application has been disabled.
-
-      applicationUrls
-         A complex multi-valued attribute containing URLs associated with the application.
-         The following sub-attributes are defined:
-
-         type
-            The type of URL. Canonical values are: "ssoEndpoint", "loginPage", "api", "homepage".
-
-         primary
-            A Boolean value indicating whether this is the primary URL of this type.
-
-         value
-            The URL string value.
-
-         description
-            A human-readable description of the URL.
-
-      lastAccessed
-         Timestamp of when the application was last accessed by any agent or user.
-         This attribute can be used for stale access detection and least privilege enforcement.
-
-      oAuthConfiguration
-         A complex multi-valued attribute that describes the OAuth connections of the application.
-         The following sub-attributes are defined:
-
-         clientId
-            The OAuth client identifier as described in section 2.2 of RFC6749.
-
-         description
-            A human-readable description of the client ID.
-
-         audienceUri
-            The OAuth audience as defined
-            in the "aud" claim of section 4.1.3 of RFC7519.
-
-         issuerUri
-            The identity provider issuer URI as defined in the "iss" claim
-            of section 4.1.1 of RFC7519.
-
-         redirectUri
-            A multi-valued attribute containing authorized redirect URIs.
-
-
-      agents
-         A complex multi-valued attribute referencing agents associated with this application.
-         The following sub-attributes are defined:
-
-         value
-            The ID of an agent associated with this application.
-
-         ref
-            A URI reference to an agent associated with this application.
-
-         display
-            The display name of the agent.
-
-         type
-            The relationship type between the agent and application.
-            Canonical values are: "owned", "authorized", "guest".
-
-      externalIdentifiers
-         A complex multi-valued attribute containing identifiers associated with this application. OPTIONAL
-         The following sub-attributes are defined:
-
-         type
-            The type of identifier. Service providers MAY define canonical values.
-            <!-- Todo: what kind? I'm thinking about the SSO URLs of that application in the IDP -->
-
-         value
-            The identifier string value.
-
-         system
-            The system or domain this identifier is valid within.
-
-### Example
-
-Example Agentic Application:
-
-# Schema JSON Representations
-
-This section provides the complete JSON representation for the schemas defined in this extension.
-
-## Agent Schema JSON
 
 ## Agentic Application Schema JSON
 
