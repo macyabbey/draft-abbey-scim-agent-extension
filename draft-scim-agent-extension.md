@@ -216,7 +216,7 @@ The Agent Resource Type schema is:
          "name": "Agent",
          "endpoint": "/Agents",
          "description": "Agent identities",
-         "schema": "urn:ietf:params:scim:schemas:core:2.0:Agent",
+         "schema": "urn:ietf:params:scim:schemas:core:2.0:Agent"
       }
 
 ### Agent filtering
@@ -364,7 +364,6 @@ The following attributes are defined in the core agent schema.
          display  The display name of the user that owns this Agent.
 
 
-
 #### JSON Representation
 
 ##### Minimal Agent Representation
@@ -481,133 +480,34 @@ representation in JSON format.
          }
       }
 
-#### Agent Schema Json
+#### Agent Resource Schema Representation
 
-[
-  {
-    "id" : "urn:ietf:params:scim:schemas:core:2.0:Agent",
-    "name" : "Agent",
-    "description" : "An AI agent",
-    "attributes" : [
+   The following is intended as an example of the SCIM schema
+   representation in JSON format for SCIM resources.  Where permitted, individual values and schema MAY change.  This example includes schema representations for "Agent".
+
       {
-        "name" : "name",
-        "type" : "string",
-        "multiValued" : false,
-        "description" : "Unique identifier for the Agent, typically
-used by the agent to directly authenticate to the service provider.
-Each Agent MUST include a non-empty name value.  This identifier
-MUST be unique across the service provider's entire set of Agents.
-REQUIRED.",
-        "required" : true,
-        "caseExact" : false,
-        "mutability" : "readWrite",
-        "returned" : "default",
-        "uniqueness" : "server"
-      },
-      {
-        "name" : "agentType",
-        "type" : "string",
-        "multiValued" : false,
-        "description" : "Used to classify like agents.  Typical values used might be
-'Assistant', 'Reseacher', 'Chat bot', and
-'Unknown', but any value may be used.",
-        "required" : false,
-        "caseExact" : false,
-        "mutability" : "readWrite",
-        "returned" : "default",
-        "uniqueness" : "none"
-      },
-      {
-        "name" : "active",
-        "type" : "boolean",
-        "multiValued" : false,
-        "description" : "A Boolean value indicating the Agent's
-administrative status.",
-        "required" : false,
-        "mutability" : "readWrite",
-        "returned" : "default"
-      },
-      {
-        "name" : "groups",
-        "type" : "complex",
-        "multiValued" : true,
-        "description" : "A list of groups to which the user belongs,
-either through direct membership, through nested groups, or
-dynamically calculated.",
-        "required" : false,
-        "subAttributes" : [
+        "id" : "urn:ietf:params:scim:schemas:core:2.0:Agent",
+        "name" : "Agent",
+        "description" : "An AI agent",
+        "attributes" : [
           {
-            "name" : "value",
+            "name" : "name",
             "type" : "string",
             "multiValued" : false,
-            "description" : "The identifier of the User's group.",
-            "required" : false,
+            "description" : "Unique identifier for the Agent, typically used by the agent to directly authenticate to the service provider. Each Agent MUST include a non-empty name value.  This identifier MUST be unique across the service provider's entire set of Agents. REQUIRED.",
+            "required" : true,
             "caseExact" : false,
-            "mutability" : "readOnly",
+            "mutability" : "readWrite",
             "returned" : "default",
-            "uniqueness" : "none"
+            "uniqueness" : "server"
           },
           {
-            "name" : "$ref",
-            "type" : "reference",
-            "referenceTypes" : [
-              "User",
-              "Group"
-            ],
-            "multiValued" : false,
-            "description" : "The URI of the corresponding 'Group'
-resource to which the user belongs.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "display",
+            "name" : "agentType",
             "type" : "string",
             "multiValued" : false,
-            "description" : "A human-readable name, primarily used
-for display purposes.  READ-ONLY.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "type",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A label indicating the attribute's
-function, e.g., 'direct' or 'indirect'.",
-            "required" : false,
-            "caseExact" : false,
-            "canonicalValues" : [
-              "direct",
-              "indirect"
-            ],
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
-          }
-        ],
-        "mutability" : "readOnly",
-        "returned" : "default"
-      },
-      {
-        "name" : "entitlements",
-        "type" : "complex",
-        "multiValued" : true,
-        "description" : "A list of entitlements for the User that
-represent a thing the User has.",
-        "required" : false,
-        "subAttributes" : [
-          {
-            "name" : "value",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "The value of an entitlement.",
+            "description" : "Used to classify like agents.  Typical values used might be
+    'Assistant', 'Reseacher', 'Chat bot', and
+    'Unknown', but any value may be used.",
             "required" : false,
             "caseExact" : false,
             "mutability" : "readWrite",
@@ -615,360 +515,456 @@ represent a thing the User has.",
             "uniqueness" : "none"
           },
           {
-            "name" : "display",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A human-readable name, primarily used
-for display purposes.  READ-ONLY.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readWrite",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "type",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A label indicating the attribute's
-function.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readWrite",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "primary",
+            "name" : "active",
             "type" : "boolean",
             "multiValued" : false,
-            "description" : "A Boolean value indicating the 'primary'
-or preferred attribute value for this attribute.  The primary
-attribute value 'true' MUST appear no more than once.",
+            "description" : "A Boolean value indicating the Agent's
+    administrative status.",
             "required" : false,
             "mutability" : "readWrite",
             "returned" : "default"
-          }
-        ],
-        "mutability" : "readWrite",
-        "returned" : "default"
-      },
-      {
-        "name" : "roles",
-        "type" : "complex",
-        "multiValued" : true,
-        "description" : "A list of roles for the User that
-collectively represent who the User is, e.g., 'Student', 'Faculty'.",
-        "required" : false,
-        "subAttributes" : [
-          {
-            "name" : "value",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "The value of a role.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readWrite",
-            "returned" : "default",
-            "uniqueness" : "none"
           },
           {
-            "name" : "display",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A human-readable name, primarily used
-for display purposes.  READ-ONLY.",
+            "name" : "groups",
+            "type" : "complex",
+            "multiValued" : true,
+            "description" : "A list of groups to which the user belongs,
+    either through direct membership, through nested groups, or
+    dynamically calculated.",
             "required" : false,
-            "caseExact" : false,
-            "mutability" : "readWrite",
-            "returned" : "default",
-            "uniqueness" : "none"
+            "subAttributes" : [
+              {
+                "name" : "value",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "The identifier of the User's group.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "$ref",
+                "type" : "reference",
+                "referenceTypes" : [
+                  "User",
+                  "Group"
+                ],
+                "multiValued" : false,
+                "description" : "The URI of the corresponding 'Group'
+    resource to which the user belongs.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "display",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A human-readable name, primarily used
+    for display purposes.  READ-ONLY.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "type",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A label indicating the attribute's
+    function, e.g., 'direct' or 'indirect'.",
+                "required" : false,
+                "caseExact" : false,
+                "canonicalValues" : [
+                  "direct",
+                  "indirect"
+                ],
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              }
+            ],
+            "mutability" : "readOnly",
+            "returned" : "default"
           },
           {
-            "name" : "type",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A label indicating the attribute's
-function.",
+            "name" : "entitlements",
+            "type" : "complex",
+            "multiValued" : true,
+            "description" : "A list of entitlements for the User that
+    represent a thing the User has.",
             "required" : false,
-            "caseExact" : false,
-            "canonicalValues" : [],
-            "mutability" : "readWrite",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "primary",
-            "type" : "boolean",
-            "multiValued" : false,
-            "description" : "A Boolean value indicating the 'primary'
-or preferred attribute value for this attribute.  The primary
-attribute value 'true' MUST appear no more than once.",
-            "required" : false,
+            "subAttributes" : [
+              {
+                "name" : "value",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "The value of an entitlement.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "display",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A human-readable name, primarily used
+    for display purposes.  READ-ONLY.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "type",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A label indicating the attribute's
+    function.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "primary",
+                "type" : "boolean",
+                "multiValued" : false,
+                "description" : "A Boolean value indicating the 'primary'
+    or preferred attribute value for this attribute.  The primary
+    attribute value 'true' MUST appear no more than once.",
+                "required" : false,
+                "mutability" : "readWrite",
+                "returned" : "default"
+              }
+            ],
             "mutability" : "readWrite",
             "returned" : "default"
-          }
-        ],
-        "mutability" : "readWrite",
-        "returned" : "default"
-      },
-      {
-        "name" : "x509Certificates",
-        "type" : "complex",
-        "multiValued" : true,
-        "description" : "A list of certificates issued to the User.",
-        "required" : false,
-        "caseExact" : false,
-        "subAttributes" : [
-          {
-            "name" : "value",
-            "type" : "binary",
-            "multiValued" : false,
-            "description" : "The value of an X.509 certificate.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readWrite",
-            "returned" : "default",
-            "uniqueness" : "none"
           },
           {
-            "name" : "display",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A human-readable name, primarily used
-for display purposes.  READ-ONLY.",
+            "name" : "roles",
+            "type" : "complex",
+            "multiValued" : true,
+            "description" : "A list of roles for the User that
+    collectively represent who the User is, e.g., 'Student', 'Faculty'.",
             "required" : false,
-            "caseExact" : false,
-            "mutability" : "readWrite",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "type",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A label indicating the attribute's
-function.",
-            "required" : false,
-            "caseExact" : false,
-            "canonicalValues" : [],
-            "mutability" : "readWrite",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "primary",
-            "type" : "boolean",
-            "multiValued" : false,
-            "description" : "A Boolean value indicating the 'primary'
-or preferred attribute value for this attribute.  The primary
-attribute value 'true' MUST appear no more than once.",
-            "required" : false,
+            "subAttributes" : [
+              {
+                "name" : "value",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "The value of a role.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "display",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A human-readable name, primarily used
+    for display purposes.  READ-ONLY.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "type",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A label indicating the attribute's
+    function.",
+                "required" : false,
+                "caseExact" : false,
+                "canonicalValues" : [],
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "primary",
+                "type" : "boolean",
+                "multiValued" : false,
+                "description" : "A Boolean value indicating the 'primary'
+    or preferred attribute value for this attribute.  The primary
+    attribute value 'true' MUST appear no more than once.",
+                "required" : false,
+                "mutability" : "readWrite",
+                "returned" : "default"
+              }
+            ],
             "mutability" : "readWrite",
             "returned" : "default"
-          }
-        ],
-        "mutability" : "readWrite",
-        "returned" : "default"
-      },
-      {
-        "name": "applications",
-        "type" : "complex",
-        "multiValued" : true,
-        "description" : "A list of applications to which the agent belongs.",
-        "required" : false,
-        "subAttributes" : [
-          {
-            "name" : "value",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "The identifier of the Agent's application.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
           },
           {
-            "name" : "$ref",
-            "type" : "reference",
-            "referenceTypes" : [
-              "AgenticApplication"
+            "name" : "x509Certificates",
+            "type" : "complex",
+            "multiValued" : true,
+            "description" : "A list of certificates issued to the User.",
+            "required" : false,
+            "caseExact" : false,
+            "subAttributes" : [
+              {
+                "name" : "value",
+                "type" : "binary",
+                "multiValued" : false,
+                "description" : "The value of an X.509 certificate.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "display",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A human-readable name, primarily used
+    for display purposes.  READ-ONLY.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "type",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A label indicating the attribute's
+    function.",
+                "required" : false,
+                "caseExact" : false,
+                "canonicalValues" : [],
+                "mutability" : "readWrite",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "primary",
+                "type" : "boolean",
+                "multiValued" : false,
+                "description" : "A Boolean value indicating the 'primary'
+    or preferred attribute value for this attribute.  The primary
+    attribute value 'true' MUST appear no more than once.",
+                "required" : false,
+                "mutability" : "readWrite",
+                "returned" : "default"
+              }
             ],
-            "multiValued" : false,
-            "description" : "The URI of the corresponding 'AgenticApplication'
-resource to which the user belongs.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
+            "mutability" : "readWrite",
+            "returned" : "default"
           },
           {
-            "name" : "display",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A human-readable name, primarily used
-for display purposes.  READ-ONLY.",
+            "name": "applications",
+            "type" : "complex",
+            "multiValued" : true,
+            "description" : "A list of applications to which the agent belongs.",
             "required" : false,
-            "caseExact" : false,
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
-          }
-        ],
-        "mutability" : "readOnly",
-        "returned" : "default"
-      },
-      {
-         "name": "subject",
-         "type" : "string",
-         "multiValued" : false,
-         "description" : "The subject to use for this agent in inbound tokens READ-ONLY.",
-         "required" : false,
-         "caseExact" : false,
-         "mutability" : "readOnly",
-         "returned" : "default",
-         "uniqueness" : "none"
-      },
-      {
-        "name": "owners",
-        "type" : "complex",
-        "multiValued" : true,
-        "description" : "A list of users or groups that are the accountable parties for the agent.",
-        "required" : false,
-        "subAttributes" : [
-          {
-            "name" : "value",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "The identifier of the Agent's application.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "$ref",
-            "type" : "reference",
-            "referenceTypes" : [
-              "User",
-              "Group"
+            "subAttributes" : [
+              {
+                "name" : "value",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "The identifier of the Agent's application.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "$ref",
+                "type" : "reference",
+                "referenceTypes" : [
+                  "AgenticApplication"
+                ],
+                "multiValued" : false,
+                "description" : "The URI of the corresponding 'AgenticApplication'
+    resource to which the user belongs.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "display",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A human-readable name, primarily used
+    for display purposes.  READ-ONLY.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              }
             ],
-            "multiValued" : false,
-            "description" : "The URI of the corresponding 'User' or 'Group'",
-            "required" : false,
-            "caseExact" : false,
             "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
+            "returned" : "default"
           },
           {
-            "name" : "display",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A human-readable name, primarily used
-for display purposes.  READ-ONLY.",
+             "name": "subject",
+             "type" : "string",
+             "multiValued" : false,
+             "description" : "The subject to use for this agent in inbound tokens READ-ONLY.",
+             "required" : false,
+             "caseExact" : false,
+             "mutability" : "readOnly",
+             "returned" : "default",
+             "uniqueness" : "none"
+          },
+          {
+            "name": "owners",
+            "type" : "complex",
+            "multiValued" : true,
+            "description" : "A list of users or groups that are the accountable parties for the agent.",
             "required" : false,
-            "caseExact" : false,
+            "subAttributes" : [
+              {
+                "name" : "value",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "The identifier of the Agent's application.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "$ref",
+                "type" : "reference",
+                "referenceTypes" : [
+                  "User",
+                  "Group"
+                ],
+                "multiValued" : false,
+                "description" : "The URI of the corresponding 'User' or 'Group'",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "display",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A human-readable name, primarily used
+    for display purposes.  READ-ONLY.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              }
+            ],
             "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
-          }
-        ],
-        "mutability" : "readOnly",
-        "returned" : "default"
-      },
-      {
-         "name": "protocols",
-         "type" : "complex",
-         "multiValued" : true,
-         "description" : "A list of protocols to communicate with the Agent.",
-         "required" : false,
-         "subAttributes" : [
-             {
-               "name" : "type",
-               "type" : "string",
-               "multiValued" : false,
-               "description" : "One of the canonical protocol types.",
-               "required" : false,
-               "caseExact" : false,
+            "returned" : "default"
+          },
+          {
+             "name": "protocols",
+             "type" : "complex",
+             "multiValued" : true,
+             "description" : "A list of protocols to communicate with the Agent.",
+             "required" : false,
+             "subAttributes" : [
+                 {
+                   "name" : "type",
+                   "type" : "string",
+                   "multiValued" : false,
+                   "description" : "One of the canonical protocol types.",
+                   "required" : false,
+                   "caseExact" : false,
+                   "mutability" : "readOnly",
+                   "returned" : "default",
+                   "uniqueness" : "none"
+                 },
+                 {
+                   "name" : "specifiationUrl",
+                   "type" : "string",
+                   "multiValued" : false,
+                   "description" : "URL of the specification for the protocol for this agent.",
+                   "required" : false,
+                   "caseExact" : false,
+                   "mutability" : "readOnly",
+                   "returned" : "default",
+                   "uniqueness" : "none"
+                 }
+               ],
                "mutability" : "readOnly",
-               "returned" : "default",
-               "uniqueness" : "none"
-             },
-             {
-               "name" : "specifiationUrl",
-               "type" : "string",
-               "multiValued" : false,
-               "description" : "URL of the specification for the protocol for this agent.",
-               "required" : false,
-               "caseExact" : false,
-               "mutability" : "readOnly",
-               "returned" : "default",
-               "uniqueness" : "none"
-             }
-           ],
-           "mutability" : "readOnly",
-           "returned" : "default"
-      },
-      {
-        "name": "parent",
-        "type" : "complex",
-        "multiValued" : false,
-        "description" : "Parent agent.",
-        "required" : false,
-        "subAttributes" : [
-          {
-            "name" : "value",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "The identifier of the parent Agent",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
+               "returned" : "default"
           },
           {
-            "name" : "$ref",
-            "type" : "reference",
-            "referenceTypes" : [
-              "Agent"
+            "name": "parent",
+            "type" : "complex",
+            "multiValued" : false,
+            "description" : "Parent agent.",
+            "required" : false,
+            "subAttributes" : [
+              {
+                "name" : "value",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "The identifier of the parent Agent",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "$ref",
+                "type" : "reference",
+                "referenceTypes" : [
+                  "Agent"
+                ],
+                "multiValued" : false,
+                "description" : "The URI of the corresponding 'Agent'",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              },
+              {
+                "name" : "display",
+                "type" : "string",
+                "multiValued" : false,
+                "description" : "A human-readable name, primarily used
+    for display purposes.  READ-ONLY.",
+                "required" : false,
+                "caseExact" : false,
+                "mutability" : "readOnly",
+                "returned" : "default",
+                "uniqueness" : "none"
+              }
             ],
-            "multiValued" : false,
-            "description" : "The URI of the corresponding 'Agent'",
-            "required" : false,
-            "caseExact" : false,
             "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
-          },
-          {
-            "name" : "display",
-            "type" : "string",
-            "multiValued" : false,
-            "description" : "A human-readable name, primarily used
-for display purposes.  READ-ONLY.",
-            "required" : false,
-            "caseExact" : false,
-            "mutability" : "readOnly",
-            "returned" : "default",
-            "uniqueness" : "none"
+            "returned" : "default"
           }
         ],
-        "mutability" : "readOnly",
-        "returned" : "default"
+        "meta" : {
+          "resourceType" : "Schema",
+          "location" :
+            "/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Agent"
+        }
       }
-    ],
-    "meta" : {
-      "resourceType" : "Schema",
-      "location" :
-        "/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Agent"
-    }
-  }
-]
 
 ## Agentic application
 
