@@ -1731,14 +1731,206 @@ representation in JSON format.<a href="#section-5.1.4.1.2-1" class="pilcrow">¶<
 </div>
 </section>
 </div>
-<div id="agent-resource-schema-representation">
-<section id="section-5.1.4.2">
-            <h5 id="name-agent-resource-schema-repre">
-<a href="#section-5.1.4.2" class="section-number selfRef">5.1.4.2. </a><a href="#name-agent-resource-schema-repre" class="section-name selfRef">Agent Resource Schema Representation</a>
-            </h5>
-<p id="section-5.1.4.2-1">The following is intended as an example of the SCIM schema
-   representation in JSON format for SCIM resources.  Where permitted, individual values and schema <span class="bcp14">MAY</span> change.  This example includes schema representations for "Agent".<a href="#section-5.1.4.2-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-5.1.4.2-2">
+</section>
+</div>
+</section>
+</div>
+<div id="agentic-application">
+<section id="section-5.2">
+        <h3 id="name-agentic-application">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-agentic-application" class="section-name selfRef">Agentic application</a>
+        </h3>
+<p id="section-5.2-1">An Agentic application represents a software application that hosts or provides access to one or more agents.
+It serves as a container and runtime environment for agents, managing their authentication, authorization, and access to resources.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<div id="resource-type">
+<section id="section-5.2.1">
+          <h4 id="name-resource-type">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-resource-type" class="section-name selfRef">Resource Type</a>
+          </h4>
+<p id="section-5.2.1-1">The Agentic Application Resource Type schema is:<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.2.1-2">
+<pre>
+  {
+     "schemas": ["urn:ietf:params:scim:schemas:core:2.0:ResourceType"],
+     "id": "AgenticApplication",
+     "name": "AgenticApplication",
+     "endpoint": "/AgenticApplications",
+     "description": "Applications that host or provide access to agents",
+     "schema": "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication",
+  }
+</pre><a href="#section-5.2.1-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="filtering">
+<section id="section-5.2.2">
+          <h4 id="name-filtering">
+<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-filtering" class="section-name selfRef">Filtering</a>
+          </h4>
+<p id="section-5.2.2-1">Clients <span class="bcp14">MAY</span> have a reference to the Agentic Application name, URL, or externalId but not the ID.
+For this reason, it is <span class="bcp14">RECOMMENDED</span> that service providers implement
+filtering that allows equality matching on the "name", "externalId", and "applicationUrls.value" attributes.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-2">Example (note that escaping has been removed for readability):<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.2.2-3">
+<pre>
+  GET /scim/v2/AgenticApplications?filter=name eq 'AI Assistant Platform'
+
+  GET /scim/v2/AgenticApplications?filter=externalId eq 'app-123456'
+</pre><a href="#section-5.2.2-3" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="common-attributes">
+<section id="section-5.2.3">
+          <h4 id="name-common-attributes">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-common-attributes" class="section-name selfRef">Common attributes</a>
+          </h4>
+<p id="section-5.2.3-1">The agentic application resource type contains the common SCIM resource type attributes
+defined in <span>[<a href="#RFC7643" class="cite xref">RFC7643</a>]</span> <a href="https://datatracker.ietf.org/doc/html/rfc7643#section-3.1">Section 3.1 Common Attributes</a><a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">They are listed here for completeness:<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2.3-3.1">
+              <p id="section-5.2.3-3.1.1">id<a href="#section-5.2.3-3.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.3-3.2">
+              <p id="section-5.2.3-3.2.1">externalId<a href="#section-5.2.3-3.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5.2.3-3.3">
+              <p id="section-5.2.3-3.3.1">meta<a href="#section-5.2.3-3.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="schema">
+<section id="section-5.2.4">
+          <h4 id="name-schema">
+<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-schema" class="section-name selfRef">Schema</a>
+          </h4>
+<p id="section-5.2.4-1">The core agentic application schema provides the representation of an "AgenticApplication" resource.
+It is identified using the schema URI:<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-2">"urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-3">The following attributes are defined in the core agentic application schema.<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.2.4-4">
+<pre>
+  name
+     The name of the Agentic Application. REQUIRED.
+
+  displayName
+     The display name of the Agentic Application. If displayName is unassigned,
+     the name MAY be used as the display name.
+
+  description
+     The description of the Agentic Application.
+
+  active
+     A Boolean value indicating the application's administrative status.
+     The definitive meaning of this attribute is determined by the service
+     provider. As a typical example, a value of true implies that the
+     application is operational, while a value of false implies that the
+     application has been disabled.
+
+  applicationUrls
+     A complex multi-valued attribute containing URLs associated with the application.
+     The following sub-attributes are defined:
+
+     type
+        The type of URL. Canonical values are: "ssoEndpoint", "loginPage", "api", "homepage".
+
+     primary
+        A Boolean value indicating whether this is the primary URL of this type.
+
+     value
+        The URL string value.
+
+     description
+        A human-readable description of the URL.
+
+  lastAccessed
+     Timestamp of when the application was last accessed by any agent or user.
+     This attribute can be used for stale access detection and least privilege enforcement.
+
+  oAuthConfiguration
+     A complex multi-valued attribute that describes the OAuth connections of the application.
+     The following sub-attributes are defined:
+
+     clientId
+        The OAuth client identifier as described in section 2.2 of RFC6749.
+
+     description
+        A human-readable description of the client ID.
+
+     audienceUri
+        The OAuth audience as defined
+        in the "aud" claim of section 4.1.3 of RFC7519.
+
+     issuerUri
+        The identity provider issuer URI as defined in the "iss" claim
+        of section 4.1.1 of RFC7519.
+
+     redirectUri
+        A multi-valued attribute containing authorized redirect URIs.
+
+
+  agents
+     A complex multi-valued attribute referencing agents associated with this application.
+     The following sub-attributes are defined:
+
+     value
+        The ID of an agent associated with this application.
+
+     ref
+        A URI reference to an agent associated with this application.
+
+     display
+        The display name of the agent.
+
+     type
+        The relationship type between the agent and application.
+        Canonical values are: "owned", "authorized", "guest".
+
+  externalIdentifiers
+     A complex multi-valued attribute containing identifiers associated with this application. OPTIONAL
+     The following sub-attributes are defined:
+
+     type
+        The type of identifier. Service providers MAY define canonical values.
+        &lt;!-- Todo: what kind? I'm thinking about the SSO URLs of that application in the IDP --&gt;
+
+     value
+        The identifier string value.
+
+     system
+        The system or domain this identifier is valid within.
+</pre><a href="#section-5.2.4-4" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="example">
+<section id="section-5.2.5">
+          <h4 id="name-example">
+<a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-example" class="section-name selfRef">Example</a>
+          </h4>
+<p id="section-5.2.5-1">Example Agentic Application:<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="schema-json-representations">
+<section id="section-6">
+      <h2 id="name-schema-json-representations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-schema-json-representations" class="section-name selfRef">Schema JSON Representations</a>
+      </h2>
+<p id="section-6-1">This section provides the complete JSON representation for the schemas defined in this extension.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="agent-schema-json">
+<section id="section-6.1">
+        <h3 id="name-agent-schema-json">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-agent-schema-json" class="section-name selfRef">Agent Schema JSON</a>
+        </h3>
+<p id="section-6.1-1">The following is intended as an example of the SCIM schema
+   representation in JSON format for SCIM resources.  Where permitted, individual values and schema <span class="bcp14">MAY</span> change.  This example includes schema representations for "Agent".<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1-2">
 <pre>
   {
     "id" : "urn:ietf:params:scim:schemas:core:2.0:Agent",
@@ -2220,207 +2412,8 @@ for display purposes.  READ-ONLY.",
         "/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Agent"
     }
   }
-</pre><a href="#section-5.1.4.2-2" class="pilcrow">¶</a>
+</pre><a href="#section-6.1-2" class="pilcrow">¶</a>
 </div>
-</section>
-</div>
-</section>
-</div>
-</section>
-</div>
-<div id="agentic-application">
-<section id="section-5.2">
-        <h3 id="name-agentic-application">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-agentic-application" class="section-name selfRef">Agentic application</a>
-        </h3>
-<p id="section-5.2-1">An Agentic application represents a software application that hosts or provides access to one or more agents.
-It serves as a container and runtime environment for agents, managing their authentication, authorization, and access to resources.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<div id="resource-type">
-<section id="section-5.2.1">
-          <h4 id="name-resource-type">
-<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-resource-type" class="section-name selfRef">Resource Type</a>
-          </h4>
-<p id="section-5.2.1-1">The Agentic Application Resource Type schema is:<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-5.2.1-2">
-<pre>
-  {
-     "schemas": ["urn:ietf:params:scim:schemas:core:2.0:ResourceType"],
-     "id": "AgenticApplication",
-     "name": "AgenticApplication",
-     "endpoint": "/AgenticApplications",
-     "description": "Applications that host or provide access to agents",
-     "schema": "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication",
-  }
-</pre><a href="#section-5.2.1-2" class="pilcrow">¶</a>
-</div>
-</section>
-</div>
-<div id="filtering">
-<section id="section-5.2.2">
-          <h4 id="name-filtering">
-<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-filtering" class="section-name selfRef">Filtering</a>
-          </h4>
-<p id="section-5.2.2-1">Clients <span class="bcp14">MAY</span> have a reference to the Agentic Application name, URL, or externalId but not the ID.
-For this reason, it is <span class="bcp14">RECOMMENDED</span> that service providers implement
-filtering that allows equality matching on the "name", "externalId", and "applicationUrls.value" attributes.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-2">Example (note that escaping has been removed for readability):<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-5.2.2-3">
-<pre>
-  GET /scim/v2/AgenticApplications?filter=name eq 'AI Assistant Platform'
-
-  GET /scim/v2/AgenticApplications?filter=externalId eq 'app-123456'
-</pre><a href="#section-5.2.2-3" class="pilcrow">¶</a>
-</div>
-</section>
-</div>
-<div id="common-attributes">
-<section id="section-5.2.3">
-          <h4 id="name-common-attributes">
-<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-common-attributes" class="section-name selfRef">Common attributes</a>
-          </h4>
-<p id="section-5.2.3-1">The agentic application resource type contains the common SCIM resource type attributes
-defined in <span>[<a href="#RFC7643" class="cite xref">RFC7643</a>]</span> <a href="https://datatracker.ietf.org/doc/html/rfc7643#section-3.1">Section 3.1 Common Attributes</a><a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-2">They are listed here for completeness:<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.2.3-3.1">
-              <p id="section-5.2.3-3.1.1">id<a href="#section-5.2.3-3.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.3-3.2">
-              <p id="section-5.2.3-3.2.1">externalId<a href="#section-5.2.3-3.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.3-3.3">
-              <p id="section-5.2.3-3.3.1">meta<a href="#section-5.2.3-3.3.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-<div id="schema">
-<section id="section-5.2.4">
-          <h4 id="name-schema">
-<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-schema" class="section-name selfRef">Schema</a>
-          </h4>
-<p id="section-5.2.4-1">The core agentic application schema provides the representation of an "AgenticApplication" resource.
-It is identified using the schema URI:<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-2">"urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-3">The following attributes are defined in the core agentic application schema.<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-5.2.4-4">
-<pre>
-  name
-     The name of the Agentic Application. REQUIRED.
-
-  displayName
-     The display name of the Agentic Application. If displayName is unassigned,
-     the name MAY be used as the display name.
-
-  description
-     The description of the Agentic Application.
-
-  active
-     A Boolean value indicating the application's administrative status.
-     The definitive meaning of this attribute is determined by the service
-     provider. As a typical example, a value of true implies that the
-     application is operational, while a value of false implies that the
-     application has been disabled.
-
-  applicationUrls
-     A complex multi-valued attribute containing URLs associated with the application.
-     The following sub-attributes are defined:
-
-     type
-        The type of URL. Canonical values are: "ssoEndpoint", "loginPage", "api", "homepage".
-
-     primary
-        A Boolean value indicating whether this is the primary URL of this type.
-
-     value
-        The URL string value.
-
-     description
-        A human-readable description of the URL.
-
-  lastAccessed
-     Timestamp of when the application was last accessed by any agent or user.
-     This attribute can be used for stale access detection and least privilege enforcement.
-
-  oAuthConfiguration
-     A complex multi-valued attribute that describes the OAuth connections of the application.
-     The following sub-attributes are defined:
-
-     clientId
-        The OAuth client identifier as described in section 2.2 of RFC6749.
-
-     description
-        A human-readable description of the client ID.
-
-     audienceUri
-        The OAuth audience as defined
-        in the "aud" claim of section 4.1.3 of RFC7519.
-
-     issuerUri
-        The identity provider issuer URI as defined in the "iss" claim
-        of section 4.1.1 of RFC7519.
-
-     redirectUri
-        A multi-valued attribute containing authorized redirect URIs.
-
-
-  agents
-     A complex multi-valued attribute referencing agents associated with this application.
-     The following sub-attributes are defined:
-
-     value
-        The ID of an agent associated with this application.
-
-     ref
-        A URI reference to an agent associated with this application.
-
-     display
-        The display name of the agent.
-
-     type
-        The relationship type between the agent and application.
-        Canonical values are: "owned", "authorized", "guest".
-
-  externalIdentifiers
-     A complex multi-valued attribute containing identifiers associated with this application. OPTIONAL
-     The following sub-attributes are defined:
-
-     type
-        The type of identifier. Service providers MAY define canonical values.
-        &lt;!-- Todo: what kind? I'm thinking about the SSO URLs of that application in the IDP --&gt;
-
-     value
-        The identifier string value.
-
-     system
-        The system or domain this identifier is valid within.
-</pre><a href="#section-5.2.4-4" class="pilcrow">¶</a>
-</div>
-</section>
-</div>
-<div id="example">
-<section id="section-5.2.5">
-          <h4 id="name-example">
-<a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-example" class="section-name selfRef">Example</a>
-          </h4>
-<p id="section-5.2.5-1">Example Agentic Application:<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-</section>
-</div>
-<div id="schema-json-representations">
-<section id="section-6">
-      <h2 id="name-schema-json-representations">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-schema-json-representations" class="section-name selfRef">Schema JSON Representations</a>
-      </h2>
-<p id="section-6-1">This section provides the complete JSON representation for the schemas defined in this extension.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<div id="agent-schema-json">
-<section id="section-6.1">
-        <h3 id="name-agent-schema-json">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-agent-schema-json" class="section-name selfRef">Agent Schema JSON</a>
-      </h3>
 </section>
 </div>
 <div id="agentic-application-schema-json">
@@ -2556,7 +2549,7 @@ standards which inspired this extension, including:<a href="#appendix-A-2" class
 <div dir="auto" class="left"><span class="org">Okta</span></div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:macy.abbey@okta.com" class="email">macy.abbey@okta.com</a>
+<a href="mailto:macy.abbey@gmail.com" class="email">macy.abbey@gmail.com</a>
 </div>
 </address>
 <address class="vcard">
