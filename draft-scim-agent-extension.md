@@ -1132,6 +1132,11 @@ This document has no IANA actions.
 
 # Change Log
 
+-01
+
++ Macy finish up Agent schema description, JSON representation and schema
++ Rafael contribution of agent app
+
 -00
 
 + Initial draft extension.
