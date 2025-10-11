@@ -258,7 +258,7 @@ The following attributes are defined in the core agent schema.
       displayName
          The display name of the Agent.  If displayName is unassigned,
          the name MAY be used as the display name.
-         
+
       active
          A Boolean value indicating the agent's administrative status.  The
          definitive meaning of this attribute is determined by the service
@@ -302,13 +302,13 @@ The following attributes are defined in the core agent schema.
          shares a trust boundary with. See "Agentic Application" section of
          this document.
 
-      subject 
+      subject
          An optional attribute that clients may specify when
          provisioning an agent so that
          service providers implementing inbound token federation
          may correlate the agent with the `sub` claim in
          an inbound token from an OpenID connect provider.
-              
+
      x509Certificates
          A list of certificates associated with the resource (e.g., a
          User).  Each value contains exactly one DER-encoded X.509
@@ -339,8 +339,8 @@ The following attributes are defined in the core agent schema.
       parent
          A complex attribute that defines the parent Agent of this
          Agent if the service provider supports hierarchies of
-         agents.  
-         
+         agents.
+
          The following sub-attributes are defined.
 
             value  The ID of the agent that is the parent of this
@@ -457,7 +457,7 @@ representation in JSON format.
             "display": "Clippy portal",
             "type": "Web"
          }],
-         "subject": "clpy2001", 
+         "subject": "clpy2001",
          "protocols: [{
             "type": "A2A",
             "specificationUrl": "https://example.com/v2/Agents/2819c223-7f76-453a-919d-413861904646/.well-known/agent-card.json"
@@ -972,7 +972,7 @@ for display purposes.  READ-ONLY.",
 
 ## Agentic application
 
-An Agentic application represents a software application that hosts or provides access to one or more agents. 
+An Agentic application represents a software application that hosts or provides access to one or more agents.
 It serves as a container and runtime environment for agents, managing their authentication, authorization, and access to resources.
 
 ### Resource Type
@@ -997,7 +997,7 @@ filtering that allows equality matching on the "name", "externalId", and "applic
 Example (note that escaping has been removed for readability):
 
       GET /scim/v2/AgenticApplications?filter=name eq 'AI Assistant Platform'
-      
+
       GET /scim/v2/AgenticApplications?filter=externalId eq 'app-123456'
 
 ### Common attributes
@@ -1010,7 +1010,7 @@ They are listed here for completeness:
    + id
    + externalId
    + meta
-   
+
 ### Schema
 
 The core agentic application schema provides the representation of an "AgenticApplication" resource.
@@ -1043,13 +1043,13 @@ The following attributes are defined in the core agentic application schema.
 
          type
             The type of URL. Canonical values are: "ssoEndpoint", "loginPage", "api", "homepage".
-            
+
          primary
             A Boolean value indicating whether this is the primary URL of this type.
-            
+
          value
             The URL string value.
-            
+
          description
             A human-readable description of the URL.
 
@@ -1063,10 +1063,10 @@ The following attributes are defined in the core agentic application schema.
 
          clientId
             The OAuth client identifier as described in section 2.2 of RFC6749.
-            
+
          description
             A human-readable description of the client ID.
-            
+
          audienceUri
             The OAuth audience as defined
             in the "aud" claim of section 4.1.3 of RFC7519.
@@ -1074,7 +1074,7 @@ The following attributes are defined in the core agentic application schema.
          issuerUri
             The identity provider issuer URI as defined in the "iss" claim
             of section 4.1.1 of RFC7519.
-         
+
          redirectUri
             A multi-valued attribute containing authorized redirect URIs.
 
@@ -1082,16 +1082,16 @@ The following attributes are defined in the core agentic application schema.
       agents
          A complex multi-valued attribute referencing agents associated with this application.
          The following sub-attributes are defined:
-         
+
          value
             The ID of an agent associated with this application.
-            
+
          ref
             A URI reference to an agent associated with this application.
-            
+
          display
             The display name of the agent.
-            
+
          type
             The relationship type between the agent and application.
             Canonical values are: "owned", "authorized", "guest".
@@ -1099,17 +1099,17 @@ The following attributes are defined in the core agentic application schema.
       externalIdentifiers
          A complex multi-valued attribute containing identifiers associated with this application. OPTIONAL
          The following sub-attributes are defined:
-         
+
          type
             The type of identifier. Service providers MAY define canonical values.
             <!-- Todo: what kind? I'm thinking about the SSO URLs of that application in the IDP -->
-            
+
          value
             The identifier string value.
-            
+
          system
             The system or domain this identifier is valid within.
-            
+
 ### Example
 
 Example Agentic Application:
