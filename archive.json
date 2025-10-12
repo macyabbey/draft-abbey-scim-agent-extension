@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-09T00:07:43.749774+00:00",
+  "timestamp": "2025-10-12T00:08:25.694861+00:00",
   "repo": "macyabbey/draft-scim-agent-extension",
   "labels": [
     {
@@ -56,26 +56,128 @@
       "id": "PR_kwDOPjJNGM6qXonf",
       "title": "Update draft-scim-agent-extension.md",
       "url": "https://github.com/macyabbey/draft-scim-agent-extension/pull/1",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "rafaels2",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Added Agentic Application, without examples yet.\r\nThe idea is that we want to correlate that app both to the IDP and to its agents.\r\n\r\nSuggestion: Rename from agent and agentic application to Workload and Application. The AI case is not that unique; it's a general NHI update to SCIM.",
       "createdAt": "2025-09-24T20:52:01Z",
-      "updatedAt": "2025-09-27T03:58:45Z",
+      "updatedAt": "2025-10-11T05:30:49Z",
       "baseRepository": "macyabbey/draft-scim-agent-extension",
       "baseRefName": "main",
       "baseRefOid": "44ca92d6751df97e3f3ebb032af757b43dd0f5da",
       "headRepository": "rafaels2/draft-scim-agent-extension",
       "headRefName": "rafaels2/add-agentic-application",
       "headRefOid": "39e410ca9663c3282c888801dcb8544ac760dd7d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-10-11T05:30:49Z",
+      "mergedAt": "2025-10-11T05:30:49Z",
+      "mergedBy": "macyabbey",
+      "mergeCommit": {
+        "oid": "b4f0582bb1a9de86c825277d6845d685016cf86f"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOPjJNGM7GSNPb",
+          "commit": {
+            "abbreviatedOid": "39e410c"
+          },
+          "author": "beep-bop-beep",
+          "authorAssociation": "NONE",
+          "state": "DISMISSED",
+          "body": "It is a reasonable suggestion to change Agent -> Workload. However, there is already enough complexity within the identity type of Agent that I feel it merits its own resource type. In general, I find objects that are polymorphic, and have child types that are also polymorphic, quite hard to reason about. So looking to avoid that here.\r\n\r\nI have a few pieces of feedback but I will leave notes for them in my next PR for you to review.",
+          "createdAt": "2025-10-11T05:12:34Z",
+          "updatedAt": "2025-10-11T05:20:36Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOPjJNGM7GSRpG",
+          "commit": {
+            "abbreviatedOid": "39e410c"
+          },
+          "author": "macyabbey",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Thanks for contributing to the extension!\r\n\r\nIt is a reasonable suggestion to change Agent -> Workload. However, there is already enough complexity within the identity type of Agent that I feel it merits its own resource type. In general, I find objects that are polymorphic, and have child types that are also polymorphic, quite hard to reason about. So looking to avoid that here.\r\n\r\nI have a few pieces of feedback but I will leave notes for them in my next PR for you to review.",
+          "createdAt": "2025-10-11T05:30:33Z",
+          "updatedAt": "2025-10-11T05:30:33Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOPjJNGM6tN8Fe",
+      "title": "Complete Agent ResourceType section",
+      "url": "https://github.com/macyabbey/draft-scim-agent-extension/pull/2",
+      "state": "MERGED",
+      "author": "macyabbey",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-11T06:23:11Z",
+      "updatedAt": "2025-10-11T06:24:43Z",
+      "baseRepository": "macyabbey/draft-scim-agent-extension",
+      "baseRefName": "main",
+      "baseRefOid": "b4f0582bb1a9de86c825277d6845d685016cf86f",
+      "headRepository": "macyabbey/draft-scim-agent-extension",
+      "headRefName": "macya-revise-before-publish",
+      "headRefOid": "4a68961ad73081cfccd1f12710d9d1f97e3cf18a",
+      "closedAt": "2025-10-11T06:24:42Z",
+      "mergedAt": "2025-10-11T06:24:42Z",
+      "mergedBy": "macyabbey",
+      "mergeCommit": {
+        "oid": "01a4d854d882be672204ddecce6ee22f91529162"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOPjJNGM7GSZQb",
+          "commit": {
+            "abbreviatedOid": "afb9d7b"
+          },
+          "author": "copilot-pull-request-reviewer",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "## Pull Request Overview\n\nThis PR completes the Agent ResourceType section in the SCIM Agent extension draft specification. It adds comprehensive documentation including attribute definitions, JSON examples, and schema specifications for AI agent resources in SCIM.\n\nKey changes include:\n- Completed agent attribute definitions with detailed descriptions\n- Added minimal and full JSON representation examples for agents\n- Included comprehensive agent schema JSON specification\n\n\n\n\n\n---\n\n<sub>**Tip:** Customize your code reviews with copilot-instructions.md. <a href=\"/macyabbey/draft-scim-agent-extension/new/main/.github?filename=copilot-instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Create the file</a> or <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">learn how to get started</a>.</sub>",
+          "createdAt": "2025-10-11T06:23:50Z",
+          "updatedAt": "2025-10-11T06:23:51Z",
+          "comments": [
+            {
+              "originalPosition": 202,
+              "body": "Missing closing quote for the type field value.\n```suggestion\n            \"type\": \"permission\",\n```",
+              "createdAt": "2025-10-11T06:23:50Z",
+              "updatedAt": "2025-10-11T06:23:52Z"
+            },
+            {
+              "originalPosition": 208,
+              "body": "Missing closing quote for the type field value.\n```suggestion\n            \"type\": \"permission\",\n            \"primary\": true\n         }],\n         \"roles\": [{\n            \"value\": \"administrator\",\n            \"display\": \"Administrator\",\n            \"type\": \"permission\",\n```",
+              "createdAt": "2025-10-11T06:23:50Z",
+              "updatedAt": "2025-10-11T06:23:52Z"
+            },
+            {
+              "originalPosition": 218,
+              "body": "Missing closing quote for the protocols field name.\n```suggestion\n         \"protocols\": [{\n```",
+              "createdAt": "2025-10-11T06:23:50Z",
+              "updatedAt": "2025-10-11T06:23:52Z"
+            },
+            {
+              "originalPosition": 272,
+              "body": "Corrected spelling of 'Reseacher' to 'Researcher'.\n```suggestion\n'Assistant', 'Researcher', 'Chat bot', and\n```",
+              "createdAt": "2025-10-11T06:23:51Z",
+              "updatedAt": "2025-10-11T06:23:52Z"
+            },
+            {
+              "originalPosition": 662,
+              "body": "Corrected spelling of 'specifiationUrl' to 'specificationUrl'.\n```suggestion\n               \"name\" : \"specificationUrl\",\n```",
+              "createdAt": "2025-10-11T06:23:51Z",
+              "updatedAt": "2025-10-11T06:23:52Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
