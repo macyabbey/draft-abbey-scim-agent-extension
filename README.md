@@ -4,16 +4,16 @@
 
 This is the working area for the individual Internet-Draft, "SCIM Agents and Agentic Applications Extension".
 
-* [Editor's Copy](https://macyabbey.github.io/draft-scim-agent-extension/#go.draft-scim-agent-extension.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-scim-agent-extension)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-scim-agent-extension)
-* [Compare Editor's Copy to Individual Draft](https://macyabbey.github.io/draft-scim-agent-extension/#go.draft-scim-agent-extension.diff)
+* [Editor's Copy](https://macyabbey.github.io/draft-abbey-scim-agent-extension/#go.draft-abbey-scim-agent-extension.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-abbey-scim-agent-extension)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-abbey-scim-agent-extension)
+* [Compare Editor's Copy to Individual Draft](https://macyabbey.github.io/draft-abbey-scim-agent-extension/#go.draft-abbey-scim-agent-extension.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/macyabbey/draft-scim-agent-extension/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/macyabbey/draft-abbey-scim-agent-extension/blob/main/CONTRIBUTING.md).
 
 The contributing file also has tips on how to make contributions, if you
 don't already know how to do that.

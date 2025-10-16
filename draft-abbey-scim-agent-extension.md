@@ -2,7 +2,7 @@
 title: "SCIM Agents and Agentic Applications Extension"
 abbrev: "SCIM Agents and Agentic Applications Extension"
 category: std
-docname: draft-scim-agent-extension-latest
+docname: draft-abbey-scim-agent-extension-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
@@ -23,8 +23,8 @@ venue:
 #  type: Working Group
 #  mail: WG@example.com
 #  arch: https://example.com/WG
-  github: "macyabbey/draft-scim-agent-extension"
-  latest: "https://macyabbey.github.io/draft-scim-agent-extension/draft-scim-agent-extension.html"
+  github: "macyabbey/draft-abbey-scim-agent-extension"
+  latest: "https://macyabbey.github.io/draft-abbey-scim-agent-extension/draft-abbey-scim-agent-extension.html"
 
 author:
   - fullname: "Macy Abbey"

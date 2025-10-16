@@ -18,7 +18,7 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-scim-agent-extension.xml
+draft-abbey-scim-agent-extension.xml
 package-lock.json
 report.xml
 !requirements.txt
