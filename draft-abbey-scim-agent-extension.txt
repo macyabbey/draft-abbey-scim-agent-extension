@@ -5,11 +5,11 @@
 SCIM                                                            M. Abbey
 Internet-Draft                                               R. S. Cohen
 Intended status: Standards Track                                    Okta
-Expires: 14 April 2026                                   11 October 2025
+Expires: 19 April 2026                                   16 October 2025
 
 
              SCIM Agents and Agentic Applications Extension
-                   draft-scim-agent-extension-latest
+                draft-abbey-scim-agent-extension-latest
 
 Abstract
 
@@ -37,13 +37,13 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://macyabbey.github.io/draft-scim-agent-extension/draft-scim-
-   agent-extension.html.  Status information for this document may be
-   found at https://datatracker.ietf.org/doc/draft-scim-agent-
-   extension/.
+   https://macyabbey.github.io/draft-abbey-scim-agent-extension/draft-
+   abbey-scim-agent-extension.html.  Status information for this
+   document may be found at https://datatracker.ietf.org/doc/draft-
+   abbey-scim-agent-extension/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/macyabbey/draft-scim-agent-extension.
+   https://github.com/macyabbey/draft-abbey-scim-agent-extension.
 
 Status of This Memo
 
@@ -60,7 +60,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 April 2026.
+   This Internet-Draft will expire on 19 April 2026.
 
 Copyright Notice
 
