@@ -624,6 +624,68 @@ The following attributes are defined in the core agentic application schema.
 
 Example Agentic Application:
 
+      {
+        "schemas": [
+          "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"
+        ],
+        "id": "b57f8a91-4bc7-4b43-9f9c-2885c4b6c1e0",
+        "externalId": "app-123456",
+        "meta": {
+          "resourceType": "AgenticApplication",
+          "created": "2024-05-01T12:34:56Z",
+          "lastModified": "2024-06-15T09:20:30Z"
+        },
+        "name": "AI Assistant Platform",
+        "displayName": "AI Assistant Platform",
+        "description": "Provides authenticated access to customer-facing AI assistants.",
+        "active": true,
+        "applicationUrls": [
+          {
+            "type": "homepage",
+            "primary": true,
+            "value": "https://assistant.example.com",
+            "description": "Primary marketing site for the application"
+          },
+          {
+            "type": "api",
+            "value": "https://api.assistant.example.com/v1",
+            "description": "Public API endpoint for agent integrations"
+          }
+        ],
+        "oAuthConfiguration": [
+          {
+            "clientId": "0oa1qwerty",
+            "description": "Production OAuth client",
+            "audienceUri": "https://assistant.example.com/api",
+            "issuerUri": "https://idp.example.com",
+            "redirectUri": [
+              "https://assistant.example.com/oauth/callback"
+            ]
+          }
+        ],
+        "agents": [
+          {
+            "value": "1d2c3b4a-5678-90ab-cdef-1234567890ab",
+            "$ref": "https://scim.example.com/v2/Agents/1d2c3b4a-5678-90ab-cdef-1234567890ab",
+            "display": "Customer Support Agent",
+            "type": "owned"
+          },
+          {
+            "value": "9f8e7d6c-5432-10fe-dcba-0987654321ff",
+            "display": "Knowledge Retrieval Agent",
+            "type": "authorized"
+          }
+        ],
+        "externalIdentifiers": [
+          {
+            "type": "ssoTenantId",
+            "value": "00abc123",
+            "system": "https://idp.example.com"
+          }
+        ],
+        "lastAccessed": "2024-06-20T17:45:00Z"
+      }
+
 # Schema JSON Representations
 
 This section provides the complete JSON representation for the schemas defined in this extension.
