@@ -622,7 +622,7 @@ The following attributes are defined in the core agentic application schema.
 
 ### Example
 
-Example Agentic Application:
+The following JSON illustrates a representative Agentic Application resource.
 
       {
         "schemas": [
@@ -1177,6 +1177,8 @@ The following is intended as an example of the SCIM schema
       }
 
 ## Agentic Application Schema JSON
+
+The following JSON enumerates the SCIM schema definition for the AgenticApplication resource.
 
      {
        "id" : "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication",
