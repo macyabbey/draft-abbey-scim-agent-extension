@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-16T00:07:55.086038+00:00",
-  "repo": "macyabbey/draft-scim-agent-extension",
+  "timestamp": "2025-10-19T00:09:17.112484+00:00",
+  "repo": "macyabbey/draft-abbey-scim-agent-extension",
   "labels": [
     {
       "name": "bug",
@@ -55,7 +55,7 @@
       "number": 1,
       "id": "PR_kwDOPjJNGM6qXonf",
       "title": "Update draft-scim-agent-extension.md",
-      "url": "https://github.com/macyabbey/draft-scim-agent-extension/pull/1",
+      "url": "https://github.com/macyabbey/draft-abbey-scim-agent-extension/pull/1",
       "state": "MERGED",
       "author": "rafaels2",
       "authorAssociation": "CONTRIBUTOR",
@@ -64,7 +64,7 @@
       "body": "Added Agentic Application, without examples yet.\r\nThe idea is that we want to correlate that app both to the IDP and to its agents.\r\n\r\nSuggestion: Rename from agent and agentic application to Workload and Application. The AI case is not that unique; it's a general NHI update to SCIM.",
       "createdAt": "2025-09-24T20:52:01Z",
       "updatedAt": "2025-10-11T05:30:49Z",
-      "baseRepository": "macyabbey/draft-scim-agent-extension",
+      "baseRepository": "macyabbey/draft-abbey-scim-agent-extension",
       "baseRefName": "main",
       "baseRefOid": "44ca92d6751df97e3f3ebb032af757b43dd0f5da",
       "headRepository": "rafaels2/draft-scim-agent-extension",
@@ -110,7 +110,7 @@
       "number": 2,
       "id": "PR_kwDOPjJNGM6tN8Fe",
       "title": "Complete Agent ResourceType section",
-      "url": "https://github.com/macyabbey/draft-scim-agent-extension/pull/2",
+      "url": "https://github.com/macyabbey/draft-abbey-scim-agent-extension/pull/2",
       "state": "MERGED",
       "author": "macyabbey",
       "authorAssociation": "OWNER",
@@ -119,10 +119,10 @@
       "body": "",
       "createdAt": "2025-10-11T06:23:11Z",
       "updatedAt": "2025-10-11T06:24:43Z",
-      "baseRepository": "macyabbey/draft-scim-agent-extension",
+      "baseRepository": "macyabbey/draft-abbey-scim-agent-extension",
       "baseRefName": "main",
       "baseRefOid": "b4f0582bb1a9de86c825277d6845d685016cf86f",
-      "headRepository": "macyabbey/draft-scim-agent-extension",
+      "headRepository": "macyabbey/draft-abbey-scim-agent-extension",
       "headRefName": "macya-revise-before-publish",
       "headRefOid": "4a68961ad73081cfccd1f12710d9d1f97e3cf18a",
       "closedAt": "2025-10-11T06:24:42Z",
@@ -178,6 +178,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOPjJNGM6udRJn",
+      "title": "Add agentic app example and schema JSON",
+      "url": "https://github.com/macyabbey/draft-abbey-scim-agent-extension/pull/3",
+      "state": "OPEN",
+      "author": "rafaels2",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-18T16:27:20Z",
+      "updatedAt": "2025-10-18T16:27:46Z",
+      "baseRepository": "macyabbey/draft-abbey-scim-agent-extension",
+      "baseRefName": "main",
+      "baseRefOid": "57bb1c0dd1750b720b09d220af1f01ebdc3fdd5f",
+      "headRepository": "rafaels2/draft-scim-agent-extension",
+      "headRefName": "main",
+      "headRefOid": "23558dc42cfde7152a3e1d05758ccfa8edc63e2b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
