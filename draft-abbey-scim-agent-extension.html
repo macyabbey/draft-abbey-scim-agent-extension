@@ -22,25 +22,24 @@ objects, and new resource types and schemas for agentic constructs.
 providers, agentic applications, agents and their clients while reducing the
 responsibilities assumed by the every growing list of new protocols for agents. 
     " name="description">
-<meta content="xml2rfc 3.30.2" name="generator">
+<meta content="xml2rfc 3.31.0" name="generator">
 <meta content="SCIM" name="keyword">
 <meta content="Agents" name="keyword">
 <meta content="Agentic applications" name="keyword">
 <meta content="Workloads" name="keyword">
 <meta content="draft-abbey-scim-agent-extension-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.2
-    Python 3.12.11
+  xml2rfc 3.31.0
+    Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.4.0
+    platformdirs 4.5.0
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.5
-    setuptools 80.9.0
     wcwidth 0.2.14
 -->
 <link href="draft-abbey-scim-agent-extension.xml" rel="alternate" type="application/rfc+xml">
@@ -1060,11 +1059,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCIM Agents and Agentic Applications Ext</td>
-<td class="right">October 2025</td>
+<td class="right">November 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Abbey &amp; Cohen</td>
-<td class="center">Expires 19 April 2026</td>
+<td class="center">Expires 9 May 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1077,12 +1076,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-abbey-scim-agent-extension-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-16" class="published">16 October 2025</time>
+<time datetime="2025-11-05" class="published">5 November 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-19">19 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-05-09">9 May 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1143,7 +1142,7 @@ responsibilities assumed by the every growing list of new protocols for agents.<
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 9 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1910,7 +1909,72 @@ It is identified using the schema URI:<a href="#section-5.2.4-1" class="pilcrow"
           <h4 id="name-example">
 <a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-example" class="section-name selfRef">Example</a>
           </h4>
-<p id="section-5.2.5-1">Example Agentic Application:<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5-1">The following JSON illustrates a representative Agentic Application resource.<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.2.5-2">
+<pre>
+  {
+    "schemas": [
+      "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"
+    ],
+    "id": "b57f8a91-4bc7-4b43-9f9c-2885c4b6c1e0",
+    "externalId": "app-123456",
+    "meta": {
+      "resourceType": "AgenticApplication",
+      "created": "2024-05-01T12:34:56Z",
+      "lastModified": "2024-06-15T09:20:30Z"
+    },
+    "name": "AI Assistant Platform",
+    "displayName": "AI Assistant Platform",
+    "description": "Provides authenticated access to customer-facing AI assistants.",
+    "active": true,
+    "applicationUrls": [
+      {
+        "type": "homepage",
+        "primary": true,
+        "value": "https://assistant.example.com",
+        "description": "Primary marketing site for the application"
+      },
+      {
+        "type": "api",
+        "value": "https://api.assistant.example.com/v1",
+        "description": "Public API endpoint for agent integrations"
+      }
+    ],
+    "oAuthConfiguration": [
+      {
+        "clientId": "0oa1qwerty",
+        "description": "Production OAuth client",
+        "audienceUri": "https://assistant.example.com/api",
+        "issuerUri": "https://idp.example.com",
+        "redirectUri": [
+          "https://assistant.example.com/oauth/callback"
+        ]
+      }
+    ],
+    "agents": [
+      {
+        "value": "1d2c3b4a-5678-90ab-cdef-1234567890ab",
+        "$ref": "https://scim.example.com/v2/Agents/1d2c3b4a-5678-90ab-cdef-1234567890ab",
+        "display": "Customer Support Agent",
+        "type": "owned"
+      },
+      {
+        "value": "9f8e7d6c-5432-10fe-dcba-0987654321ff",
+        "display": "Knowledge Retrieval Agent",
+        "type": "authorized"
+      }
+    ],
+    "externalIdentifiers": [
+      {
+        "type": "ssoTenantId",
+        "value": "00abc123",
+        "system": "https://idp.example.com"
+      }
+    ],
+    "lastAccessed": "2024-06-20T17:45:00Z"
+  }
+</pre><a href="#section-5.2.5-2" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 </section>
@@ -2420,7 +2484,309 @@ for display purposes.  READ-ONLY.",
 <section id="section-6.2">
         <h3 id="name-agentic-application-schema-">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-agentic-application-schema-" class="section-name selfRef">Agentic Application Schema JSON</a>
-      </h3>
+        </h3>
+<p id="section-6.2-1">The following JSON enumerates the SCIM schema definition for the AgenticApplication resource.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.2-2">
+<pre>
+ {
+   "id" : "urn:ietf:params:scim:schemas:core:2.0:AgenticApplication",
+   "name" : "AgenticApplication",
+   "description" : "An application that hosts or provides access to agents.",
+   "attributes" : [
+     {
+       "name" : "name",
+       "type" : "string",
+       "multiValued" : false,
+       "description" : "Unique identifier for the Agentic Application. Each Agentic Application MUST include a non-empty name value. This identifier MUST be unique across the service provider's entire set of Agentic Applications. REQUIRED.",
+       "required" : true,
+       "caseExact" : false,
+       "mutability" : "readWrite",
+       "returned" : "default",
+       "uniqueness" : "server"
+     },
+     {
+       "name" : "displayName",
+       "type" : "string",
+       "multiValued" : false,
+       "description" : "A human-readable name, primarily used for display purposes. If not present, the value of name MAY be used instead.",
+       "required" : false,
+       "caseExact" : false,
+       "mutability" : "readWrite",
+       "returned" : "default",
+       "uniqueness" : "none"
+     },
+     {
+       "name" : "description",
+       "type" : "string",
+       "multiValued" : false,
+       "description" : "A description of the Agentic Application.",
+       "required" : false,
+       "caseExact" : false,
+       "mutability" : "readWrite",
+       "returned" : "default",
+       "uniqueness" : "none"
+     },
+     {
+       "name" : "active",
+       "type" : "boolean",
+       "multiValued" : false,
+       "description" : "A Boolean value indicating the Agentic Application's administrative status.",
+       "required" : false,
+       "mutability" : "readWrite",
+       "returned" : "default"
+     },
+     {
+       "name" : "applicationUrls",
+       "type" : "complex",
+       "multiValued" : true,
+       "description" : "A list of URLs associated with the Agentic Application.",
+       "required" : false,
+       "subAttributes" : [
+         {
+           "name" : "type",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "Type of URL.",
+           "required" : false,
+           "caseExact" : false,
+           "canonicalValues" : [
+             "ssoEndpoint",
+             "loginPage",
+             "api",
+             "homepage"
+           ],
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "primary",
+           "type" : "boolean",
+           "multiValued" : false,
+           "description" : "A Boolean value indicating whether this is the primary URL of this type.",
+           "required" : false,
+           "mutability" : "readWrite",
+           "returned" : "default"
+         },
+         {
+           "name" : "value",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "The URL value.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "description",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "A human-readable description of the URL.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         }
+       ],
+       "mutability" : "readWrite",
+       "returned" : "default"
+     },
+     {
+       "name" : "lastAccessed",
+       "type" : "dateTime",
+       "multiValued" : false,
+       "description" : "Timestamp of when the Agentic Application was last accessed.",
+       "required" : false,
+       "mutability" : "readOnly",
+       "returned" : "default"
+     },
+     {
+       "name" : "oAuthConfiguration",
+       "type" : "complex",
+       "multiValued" : true,
+       "description" : "OAuth client configuration for the Agentic Application.",
+       "required" : false,
+       "subAttributes" : [
+         {
+           "name" : "clientId",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "The OAuth client identifier.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "description",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "A human-readable description of the OAuth client.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "audienceUri",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "The OAuth audience URI.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "issuerUri",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "The identity provider issuer URI.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "redirectUri",
+           "type" : "reference",
+           "referenceTypes" : [
+             "uri"
+           ],
+           "multiValued" : true,
+           "description" : "Authorized redirect URIs for the OAuth client.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         }
+       ],
+       "mutability" : "readWrite",
+       "returned" : "default"
+     },
+     {
+       "name" : "agents",
+       "type" : "complex",
+       "multiValued" : true,
+       "description" : "Agents associated with this Agentic Application.",
+       "required" : false,
+       "subAttributes" : [
+         {
+           "name" : "value",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "Identifier of the associated Agent.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "$ref",
+           "type" : "reference",
+           "referenceTypes" : [
+             "Agent"
+           ],
+           "multiValued" : false,
+           "description" : "The URI of the associated Agent resource.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readOnly",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "display",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "Display name of the associated Agent.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readOnly",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "type",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "Relationship between the Agentic Application and the Agent.",
+           "required" : false,
+           "caseExact" : false,
+           "canonicalValues" : [
+             "owned",
+             "authorized",
+             "guest"
+           ],
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         }
+       ],
+       "mutability" : "readWrite",
+       "returned" : "default"
+     },
+     {
+       "name" : "externalIdentifiers",
+       "type" : "complex",
+       "multiValued" : true,
+       "description" : "External identifiers for the Agentic Application.",
+       "required" : false,
+       "subAttributes" : [
+         {
+           "name" : "type",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "Type of identifier.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "value",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "Identifier value.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         },
+         {
+           "name" : "system",
+           "type" : "string",
+           "multiValued" : false,
+           "description" : "System or domain within which the identifier is valid.",
+           "required" : false,
+           "caseExact" : false,
+           "mutability" : "readWrite",
+           "returned" : "default",
+           "uniqueness" : "none"
+         }
+       ],
+       "mutability" : "readWrite",
+       "returned" : "default"
+     }
+   ],
+   "meta" : {
+     "resourceType" : "Schema",
+     "location" : "/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:AgenticApplication"
+   }
+ }
+</pre><a href="#section-6.2-2" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 </section>
