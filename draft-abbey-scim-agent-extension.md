@@ -275,13 +275,6 @@ The following attributes are defined in the core agent schema.
          for type, but service providers MAY choose to define the valid
          types.
 
-      active
-         A Boolean value indicating the agent's administrative status.  The
-         definitive meaning of this attribute is determined by the service
-         provider.  As a typical example, a value of true implies that the
-         agent is running, while a value of false implies that the
-         agent has been suspended.
-
       entitlements
          An optional complex object that indicates entitlements the agent has.
          Its form is precisely the same as that defined in Section 4.1.2 of
