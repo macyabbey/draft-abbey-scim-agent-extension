@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-04T00:08:33.424408+00:00",
+  "timestamp": "2025-11-06T00:08:37.238529+00:00",
   "repo": "macyabbey/draft-abbey-scim-agent-extension",
   "labels": [
     {
@@ -184,20 +184,62 @@
       "id": "PR_kwDOPjJNGM6udRJn",
       "title": "Add agentic app example and schema JSON",
       "url": "https://github.com/macyabbey/draft-abbey-scim-agent-extension/pull/3",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "rafaels2",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-10-18T16:27:20Z",
-      "updatedAt": "2025-10-18T16:27:46Z",
+      "updatedAt": "2025-11-05T00:43:44Z",
       "baseRepository": "macyabbey/draft-abbey-scim-agent-extension",
       "baseRefName": "main",
       "baseRefOid": "57bb1c0dd1750b720b09d220af1f01ebdc3fdd5f",
       "headRepository": "rafaels2/draft-scim-agent-extension",
       "headRefName": "main",
       "headRefOid": "23558dc42cfde7152a3e1d05758ccfa8edc63e2b",
+      "closedAt": "2025-11-05T00:43:44Z",
+      "mergedAt": "2025-11-05T00:43:44Z",
+      "mergedBy": "macyabbey",
+      "mergeCommit": {
+        "oid": "951a4cc45ed3d190ee41b4f911e223e5791d2361"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOPjJNGM7Ly4V5",
+          "commit": {
+            "abbreviatedOid": "23558dc"
+          },
+          "author": "macyabbey",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Thanks for completing these sections.",
+          "createdAt": "2025-11-05T00:43:37Z",
+          "updatedAt": "2025-11-05T00:43:37Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOPjJNGM6ximDB",
+      "title": "chore: Remove duplicate 'active' attribute",
+      "url": "https://github.com/macyabbey/draft-abbey-scim-agent-extension/pull/4",
+      "state": "OPEN",
+      "author": "max-stytch",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Removes duplicate `active` attribute which is also defined on line 262",
+      "createdAt": "2025-11-05T02:42:31Z",
+      "updatedAt": "2025-11-05T02:42:32Z",
+      "baseRepository": "macyabbey/draft-abbey-scim-agent-extension",
+      "baseRefName": "main",
+      "baseRefOid": "951a4cc45ed3d190ee41b4f911e223e5791d2361",
+      "headRepository": "max-stytch/draft-abbey-scim-agent-extension",
+      "headRefName": "patch-1",
+      "headRefOid": "17abf0677731efafdf918c677ac63739cf31a3c7",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
